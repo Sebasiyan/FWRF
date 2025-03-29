@@ -1,0 +1,8502 @@
+
+focus_tree = {
+	
+	id = zywiec_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = ZYE
+		}
+
+		
+	}
+	
+	default = no
+	
+	continuous_focus_position = { x = 50 y = 4000 }
+
+	
+	focus = {
+		id = ZYE_time_of_decision
+		icon = GFX_goal_ZYE_decision_time
+		
+		x = 80
+		y = 0
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				JAP = { has_government = communism }
+				factor = 0
+			}
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			mark_focus_tree_layout_dirty = yes
+			add_political_power = 100
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	#################SZLAGOR
+	
+	
+	focus = {
+		id = ZYE_szlagor_win
+		icon = GFX_goal_generic_neutrality_focus
+		
+		x = -5
+		y = 2
+		relative_position_id = ZYE_time_of_decision
+		prerequisite = { focus = ZYE_time_of_decision }
+		mutually_exclusive = {focus = ZYE_communist_win}
+		mutually_exclusive = {focus = ZYE_fascism_win}
+		mutually_exclusive = {focus = ZYE_democracy_win}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				JAP = { has_government = communism }
+				factor = 0
+			}
+		}
+
+		available = {
+			NOT = {has_active_mission = ZYE_czas_na_wybory}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.3
+				}
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+				long_name = ZYE_szlagor_royal_party
+				name = ZYE_szlagor
+				}
+			add_ideas = bunt_gorali
+			add_country_leader_trait = dictator
+			mark_focus_tree_layout_dirty = yes
+			hidden_effect =  {ZYE = { country_event = zywiec.1 }}
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_gorale
+		icon = GFX_goal_ZYE_gorale
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_win
+		prerequisite = { focus = ZYE_szlagor_win }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = bunt_gorali
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_obietnica
+		icon = GFX_focus_generic_support_the_left_right
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_gorale
+		prerequisite = { focus = ZYE_szlagor_gorale }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 30
+			add_stability = 0.02
+			add_war_support = 0.07
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_koronacja
+		icon = GFX_focus_rom_royal_dictatorship
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_obietnica
+		prerequisite = { focus = ZYE_szlagor_obietnica }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			mark_focus_tree_layout_dirty = yes
+			add_political_power = 100
+			add_country_leader_trait = the_sacred_king
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_nacjonalizacja_browaru
+		icon = GFX_focus_generic_industry_3
+		
+		x = -3
+		y = 1
+		relative_position_id = ZYE_szlagor_koronacja
+		prerequisite = { focus = ZYE_szlagor_koronacja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = industrial_complex 
+				level = 5
+				instant_build = yes
+				
+				}
+		}	
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_browar_krolewski
+		icon = GFX_goal_ZYE_browar
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_nacjonalizacja_browaru
+		prerequisite = { focus = ZYE_szlagor_nacjonalizacja_browaru }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = browar_zywiecki
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_kebab1
+		icon = GFX_goal_ZYE_kebab1
+		
+		x = -5
+		y = 1
+		relative_position_id = ZYE_szlagor_koronacja
+		prerequisite = { focus = ZYE_szlagor_koronacja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = industrial_complex 
+				level = 5
+				instant_build = yes
+				
+				}
+			}	
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_kebab2
+		icon = GFX_goal_ZYE_kebab2
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_kebab1
+		prerequisite = { focus = ZYE_szlagor_kebab1 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = kebab_krolewski
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_kebab3
+		icon = GFX_goal_ZYE_kebab3
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_kebab2
+		prerequisite = { focus = ZYE_szlagor_kebab2 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = kebab_krolewski
+				add_idea = kebab_krolewski2
+			}		
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_stop_propagandzie
+		icon = GFX_goal_continuous_def_against_influence
+		
+		x = 6
+		y = 1
+		relative_position_id = ZYE_szlagor_koronacja
+		prerequisite = { focus = ZYE_szlagor_koronacja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = zywiec_memes
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_nowa_siedziba_krola
+		icon = GFX_goal_ZYE_zamek
+		
+		x = 4
+		y = 1
+		relative_position_id = ZYE_szlagor_koronacja
+		prerequisite = { focus = ZYE_szlagor_koronacja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_country_leader_trait = man_of_the_nation
+		}
+	}
+	
+	
+	###HIDDEN
+	
+	
+	focus = {
+		id = ZYE_szlagor_mongolia1
+		icon = GFX_focus_generic_diplomatic_treaty
+		
+		x = 7
+		y = 3
+		relative_position_id = ZYE_szlagor_koronacja
+		prerequisite = { focus = ZYE_szlagor_koronacja }
+		mutually_exclusive = {focus = ZYE_szlagor_habsburskie_roszczenia}
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+		allow_branch = {ZYE_vlad = {is_hired_as_advisor = yes} has_completed_focus = ZYE_szlagor_koronacja NOT = {has_completed_focus = ZYE_szlagor_habsburskie_roszczenia}} 
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		MON ={add_opinion_modifier = {
+				target = ZYE
+				modifier = SWI_close_ties
+			}}
+	}
+	}
+	focus = {
+		id = ZYE_szlagor_mongolia2
+		icon = GFX_goal_tripartite_pact
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_mongolia1
+		prerequisite = { focus = ZYE_szlagor_mongolia1 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			MON = {country_event = zywiec.4}
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_mongolia3
+		icon = GFX_focus_chi_one_china_policy
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_szlagor_mongolia2
+		prerequisite = { focus = ZYE_szlagor_mongolia2 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				every_state = {
+				limit = {
+					is_core_of = CHI
+					NOT = {state = 524}
+					}
+				add_core_of = ZYE
+				}
+			}	
+	}
+	focus = {
+		id = ZYE_szlagor_tradycje_habsburgow
+		icon = GFX_focus_generic_home_defense
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_nowa_siedziba_krola
+		prerequisite = { focus = ZYE_szlagor_nowa_siedziba_krola }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_habsburskie_roszczenia
+		icon = GFX_focus_proclaim_the_restauration_of_Austria_Hungary
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_tradycje_habsburgow
+		prerequisite = { focus = ZYE_szlagor_tradycje_habsburgow }
+		mutually_exclusive = {focus = ZYE_szlagor_mongolia1}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = {
+			limit = {is_core_of = AUS}
+			add_claim_by = ZYE
+			}
+			every_state = {
+			limit = {is_core_of = HUN}
+			add_claim_by = ZYE
+			}
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_zajecie_austrii
+		icon = GFX_goal_generic_territory_or_war
+		
+		x = 0 
+		y = 3
+		relative_position_id = ZYE_szlagor_habsburskie_roszczenia
+		prerequisite = { focus = ZYE_szlagor_habsburskie_roszczenia }
+		prerequisite = { focus = ZYE_szlagor_imperium_zywieckie }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			country_exists = AUS
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+					create_wargoal = {
+					type = annex_everything
+					target = AUS
+				}
+				
+			
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_zajecie_wegier
+		icon = GFX_goal_generic_major_war
+		
+		x = 0 
+		y = 1
+		relative_position_id = ZYE_szlagor_zajecie_austrii
+		prerequisite = { focus = ZYE_szlagor_zajecie_austrii }
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			country_exists = HUN
+			has_full_control_of_state = 4
+			has_full_control_of_state = 152
+			has_full_control_of_state = 153
+			has_full_control_of_state = 848
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+					create_wargoal = {
+					type = annex_everything
+					target = HUN
+				}	
+			}	
+		}
+	
+	focus = {
+		id = ZYE_szlagor_king_of_poland
+		icon = GFX_focus_generic_home_defense
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_koronacja
+		prerequisite = { focus = ZYE_szlagor_koronacja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				every_state = {
+				limit = {is_owned_by = POL}
+				add_core_of = ZYE
+				}
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_war_with_poland
+		icon = GFX_goal_generic_major_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_king_of_poland
+		prerequisite = { focus = ZYE_szlagor_king_of_poland }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+			NOT = {country_exists = POL}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = atak_z_zaskoczenia
+				days = 20
+			}
+				create_wargoal = {
+					target = POL
+					type = annex_everything
+				}
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_rule_the_czechoslovakia
+		icon = GFX_goal_generic_political_pressure
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_szlagor_koronacja
+		prerequisite = { focus = ZYE_szlagor_koronacja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				every_state = {
+				limit = {is_owned_by = CZE}
+				add_core_of = ZYE
+				}
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_take_czechoslovakia
+		icon = GFX_goal_generic_territory_or_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_rule_the_czechoslovakia
+		prerequisite = { focus = ZYE_szlagor_rule_the_czechoslovakia }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+			NOT = {country_exists = CZE}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				mark_focus_tree_layout_dirty = yes
+				CZE = {country_event = zywiec.2}
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_carpathia
+		icon = GFX_goal_generic_national_unity
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_szlagor_take_czechoslovakia
+		prerequisite = { focus = ZYE_szlagor_take_czechoslovakia }
+		prerequisite = { focus = ZYE_szlagor_war_with_poland }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {country_exists = POL country_exists = CZE}
+				
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_political_power = 50
+				
+				add_state_core = 76
+				add_state_core = 82
+				add_state_core = 83
+				add_state_core = 84
+				
+				
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_unite_all_carpathia
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_carpathia
+		prerequisite = { focus = ZYE_szlagor_carpathia }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				create_wargoal = {
+				type = take_state_focus
+				target = ROM
+				generator = { 76 82 83 84 }
+				}
+				FRA = {diplomatic_relation = {
+					country = ROM
+					relation = guarantee
+					active = no
+				}}
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_imperium_zywieckie
+		icon = GFX_goal_ZYE_imperium
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_unite_all_carpathia
+		prerequisite = { focus = ZYE_szlagor_unite_all_carpathia }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {				
+			owns_state = 76
+			owns_state = 82 
+			owns_state = 83	
+			owns_state = 84
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				mark_focus_tree_layout_dirty = yes
+				set_cosmetic_tag = ZYE_empire
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_skupienie_sprawy_miedzynarodowe
+		icon = GFX_focus_usa_focus_on_europe
+		
+		x = 0 
+		y = 4
+		relative_position_id = ZYE_szlagor_imperium_zywieckie
+		prerequisite = { focus = ZYE_szlagor_imperium_zywieckie }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				mark_focus_tree_layout_dirty = yes
+				add_political_power = 100
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_sojusz_z_niemcami
+		icon = GFX_focus_chi_mission_to_germany
+		
+		x = -3
+		y = 1
+		relative_position_id = ZYE_szlagor_skupienie_sprawy_miedzynarodowe
+		prerequisite = { focus = ZYE_szlagor_skupienie_sprawy_miedzynarodowe }
+		mutually_exclusive = {focus = ZYE_szlagor_sojusz_z_wielka_brytania}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = { has_war_with = GER }
+			is_subject = no
+			is_in_faction = no
+			NOT = {
+				any_other_country = {
+					is_in_faction_with = GER
+					has_war_with = ZYE	
+				}
+			}
+			GER = {
+				is_faction_leader = yes
+				is_subject = no
+			}
+		}
+
+		bypass = {
+			AND = { 
+				is_in_faction_with = GER
+				GER = {
+					is_faction_leader = yes
+				}
+			} 
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				GER = {
+					country_event = generic.2
+				}
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_nowa_ekspansja
+		icon = GFX_goal_generic_territory_or_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_sojusz_z_niemcami
+		prerequisite = { focus = ZYE_szlagor_sojusz_z_niemcami }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_war_support = 0.05
+				add_stability = 0.05
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_nowe_wieksze_jezioro
+		icon = GFX_goal_generic_position_armies
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_nowa_ekspansja
+		prerequisite = { focus = ZYE_szlagor_nowa_ekspansja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = {
+				limit = {
+					BUL_state_is_in_the_black_sea = yes
+				}
+				add_claim_by = ZYE
+			}
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_niemiecka_wspolpraca
+		icon = GFX_goal_generic_army_doctrines
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_szlagor_nowe_wieksze_jezioro
+		prerequisite = { focus = ZYE_szlagor_nowe_wieksze_jezioro }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			is_in_faction_with = GER
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = armor
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cas_bomber
+			}
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_niemieckie_inwestycje
+		icon = GFX_focus_generic_industry_3
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_niemiecka_wspolpraca
+		prerequisite = { focus = ZYE_szlagor_niemiecka_wspolpraca }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			is_in_faction_with = GER
+			controls_state = 762
+			controls_state = 70
+			num_of_controlled_states > 10
+			has_tech = synth_oil_experiments
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 40
+				state = 762
+			}
+			add_resource = {
+				type = tungsten
+				amount = 30
+				state = 70
+			}
+			if = {
+			limit = {controls_state = 155}
+				add_resource = {
+				type = aluminium
+				amount = 45
+				state = 155
+				}
+			}
+			if = {
+			limit = {controls_state = 46}
+				add_resource = {
+				type = oil
+				amount = 50
+				state = 46
+				}
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = industrial_complex 
+				level = 4
+				instant_build = yes
+				
+				}
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = arms_factory 
+				level = 4
+				instant_build = yes
+				
+				}
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = synthetic_refinery 
+				level = 3
+				instant_build = yes
+				
+				}
+			}
+			
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_wielkie_zywieckie_jezioro
+		icon = GFX_focus_generic_black_sea_focus
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_szlagor_nowe_wieksze_jezioro
+		prerequisite = { focus = ZYE_szlagor_nowe_wieksze_jezioro }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+					
+					every_state = {
+						limit = {
+							BUL_state_is_in_the_black_sea = yes
+						}
+						controller = { 
+						ROOT = {
+						create_wargoal = {
+						target = PREV
+						type = annex_everything
+						expire = 150
+						}
+						}
+						}
+						}	
+			}
+	}
+	focus = {
+		id = ZYE_szlagor_ukonczenie_dziela
+		icon = GFX_goal_generic_demand_territory
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_wielkie_zywieckie_jezioro
+		prerequisite = { focus = ZYE_szlagor_wielkie_zywieckie_jezioro }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+					AND = {
+						controls_state = 211
+						controls_state = 341
+						controls_state = 797
+						controls_state = 347
+						controls_state = 356
+						controls_state = 355
+						controls_state = 354
+						controls_state = 231
+						controls_state = 826
+						controls_state = 233
+						controls_state = 234
+						controls_state = 218
+						controls_state = 227
+						controls_state = 200
+						controls_state = 196
+						controls_state = 137
+						controls_state = 197
+						controls_state = 192
+						controls_state = 766
+						controls_state = 46
+						controls_state = 77
+
+					}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+					add_stability= 0.05
+					add_political_power= 200
+					add_ideas = wielki_zywiec
+			}
+	}
+	focus = {
+		id = ZYE_szlagor_ostateczny_rywal
+		icon = GFX_focus_attack_germany
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_ukonczenie_dziela
+		prerequisite = { focus = ZYE_szlagor_ukonczenie_dziela }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+					
+					declare_war_on = {
+						target = GER
+						type = annex_everything
+					}
+					add_ideas = zniszczenie_rzeszy
+			}
+	}
+	focus = {
+		id = ZYE_szlagor_sojusz_z_wielka_brytania
+		icon = GFX_focus_chi_british_cooperation
+		
+		x = 3
+		y = 1
+		relative_position_id = ZYE_szlagor_skupienie_sprawy_miedzynarodowe
+		prerequisite = { focus = ZYE_szlagor_skupienie_sprawy_miedzynarodowe }
+		mutually_exclusive = {focus = ZYE_szlagor_sojusz_z_niemcami}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = { has_war_with = ENG }
+			is_subject = no
+			is_in_faction = no
+			NOT = {
+				any_other_country = {
+					is_in_faction_with = ENG
+					has_war_with = ZYE	
+				}
+			}
+			ENG = {
+				is_faction_leader = yes
+				is_subject = no
+			}
+		}
+
+		bypass = {
+			AND = { 
+				is_in_faction_with = ENG
+				ENG = {
+					is_faction_leader = yes
+				}
+			} 
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				ENG = {
+					country_event = generic.2
+				}
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_zniszczenie_faszyzmu
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_sojusz_z_wielka_brytania
+		prerequisite = { focus = ZYE_szlagor_sojusz_z_wielka_brytania }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_war_support = 0.05
+				add_stability = 0.05
+			}	
+		}
+	focus = {
+		id = ZYE_szlagor_jezioro_baltyckie
+		icon = GFX_focus_generic_attack_nordic_territory
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_zniszczenie_faszyzmu
+		prerequisite = { focus = ZYE_szlagor_zniszczenie_faszyzmu }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+						add_state_claim = 85
+						add_state_claim = 5
+						add_state_claim = 763
+						add_state_claim = 188
+						add_state_claim = 189
+						add_state_claim = 190
+						add_state_claim = 809
+						add_state_claim = 808
+						add_state_claim = 12
+						add_state_claim = 13
+						add_state_claim = 811
+						add_state_claim = 812
+						add_state_claim = 813
+						add_state_claim = 208
+						add_state_claim = 195
+						add_state_claim = 146
+						add_state_claim = 928
+						add_state_claim = 111
+						add_state_claim = 926
+						add_state_claim = 145
+						add_state_claim = 149
+						add_state_claim = 929
+						add_state_claim = 148
+						add_state_claim = 666
+						add_state_claim = 918
+						add_state_claim = 38
+						add_state_claim = 141
+						add_state_claim = 913
+						add_state_claim = 139
+						add_state_claim = 124
+						add_state_claim = 138
+						add_state_claim = 37
+						add_state_claim = 910
+						add_state_claim = 911
+						add_state_claim = 912
+						add_state_claim = 909
+						add_state_claim = 58
+						add_state_claim = 61
+						add_state_claim = 62
+						add_state_claim = 63
+						add_state_claim = 85
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_ku_chwale_zywca
+		icon = GFX_goal_generic_position_armies
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_jezioro_baltyckie
+		prerequisite = { focus = ZYE_szlagor_jezioro_baltyckie }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = {
+						limit = {
+						OR = {
+						state = 85
+						state = 5
+						state = 763
+						state = 188
+						state = 189
+						state = 190
+						state = 809
+						state = 808
+						state = 12
+						state = 13
+						state = 811
+						state = 812
+						state = 813
+						state = 208
+						state = 195
+						state = 146
+						state = 928
+						state = 111
+						state = 926
+						state = 145
+						state = 149
+						state = 929
+						state = 148
+						state = 666
+						state = 918
+						state = 38
+						state = 141
+						state = 913
+						state = 139
+						state = 124
+						state = 138
+						state = 37
+						state = 910
+						state = 911
+						state = 912
+						state = 909
+						state = 58
+						state = 61
+						state = 62
+						state = 63
+						state = 85
+						}}
+				
+						controller = { 
+						ROOT = {
+						create_wargoal = {
+						target = PREV
+						type = annex_everything
+						expire = 150
+						}
+						}
+						}
+						}
+			add_ideas = zniszczenie_rzeszy
+		}
+	}
+	focus = {
+		id = ZYE_szlagor_wielki_zywiec
+		icon = GFX_focus_generic_little_entente
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_szlagor_ku_chwale_zywca
+		prerequisite = { focus = ZYE_szlagor_ku_chwale_zywca }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+					AND = {
+						controls_state = 85
+						controls_state = 5
+						controls_state = 763
+						controls_state = 188
+						controls_state = 189
+						controls_state = 190
+						controls_state = 809
+						controls_state = 808
+						controls_state = 12
+						controls_state = 13
+						controls_state = 811
+						controls_state = 812
+						controls_state = 813
+						controls_state = 208
+						controls_state = 195
+						controls_state = 146
+						controls_state = 928
+						controls_state = 111
+						controls_state = 926
+						controls_state = 145
+						controls_state = 149
+						controls_state = 929
+						controls_state = 148
+						controls_state = 666
+						controls_state = 918
+						controls_state = 38
+						controls_state = 141
+						controls_state = 913
+						controls_state = 139
+						controls_state = 124
+						controls_state = 138
+						controls_state = 37
+						controls_state = 910
+						controls_state = 911
+						controls_state = 912
+						controls_state = 909
+						controls_state = 58
+						controls_state = 61
+						controls_state = 62
+						controls_state = 63
+						controls_state = 85
+
+					}
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_political_power = 300
+				add_war_support = 0.50
+				add_ideas = wielki_zywiec
+			}
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		#############COMMUNIST
+		
+	focus = {
+		id = ZYE_communist_win
+		icon = GFX_goal_support_communism
+		
+		x = -20
+		y = 2
+		relative_position_id = ZYE_time_of_decision
+		prerequisite = { focus = ZYE_time_of_decision }
+		mutually_exclusive = {focus = ZYE_szlagor_win}
+		mutually_exclusive = {focus = ZYE_fascism_win}
+		mutually_exclusive = {focus = ZYE_democracy_win}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				JAP = { has_government = communism }
+				factor = 0
+			}
+		}
+
+		available = {
+			NOT = {has_active_mission = ZYE_czas_na_wybory}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.3
+				}
+			set_country_leader_ideology = communism
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
+				}
+			add_ideas = gospodarka_centralnie_planowana1
+			add_ideas = bunt_gorali
+			mark_focus_tree_layout_dirty = yes
+			hidden_effect =  {ZYE = { country_event = zywiec.1 }}
+		}
+	}
+	focus = {
+		id = ZYE_communist_union
+		icon = GFX_goal_generic_forceful_treaty
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_win
+		prerequisite = { focus = ZYE_communist_win }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			POL = {country_event = zywiec.6}	
+		}
+	}
+	focus = {
+		id = ZYE_communist_potwierdzenie_zwiazku
+		icon = GFX_focus_generic_join_comintern
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_union
+		prerequisite = { focus = ZYE_communist_union }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_cosmetic_tag = ZYE_union	
+		}
+	}
+	focus = {
+		id = ZYE_communist_zakazanie_konfy
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_communist_potwierdzenie_zwiazku
+		prerequisite = { focus = ZYE_communist_potwierdzenie_zwiazku }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.5
+			}
+		}
+	}
+	focus = {
+		id = ZYE_communist_reforma_podatkowa
+		icon = GFX_focus_hol_the_foundations_of_defense
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_communist_potwierdzenie_zwiazku
+		prerequisite = { focus = ZYE_communist_potwierdzenie_zwiazku }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = gospodarka_centralnie_planowana1
+				add_idea = gospodarka_centralnie_planowana2
+			}	
+		}
+	}
+	
+	focus = {
+		id = ZYE_communist_eksport_sera
+		icon = GFX_goal_generic_trade
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_communist_reforma_podatkowa
+		prerequisite = { focus = ZYE_communist_reforma_podatkowa }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 150
+		}
+	}
+	focus = {
+		id = ZYE_communist_nacjonalizacja_browaru
+		icon = GFX_focus_generic_industry_3
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_communist_reforma_podatkowa
+		prerequisite = { focus = ZYE_communist_reforma_podatkowa }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = industrial_complex 
+				level = 5
+				instant_build = yes
+				
+				}
+		}	
+		}
+	}
+	focus = {
+		id = ZYE_communist_przejecie_zywiec_memes
+		icon = GFX_goal_continuous_def_against_influence
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_communist_nacjonalizacja_browaru
+		prerequisite = { focus = ZYE_communist_nacjonalizacja_browaru focus = ZYE_communist_eksport_sera}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = zywiec_memes
+		}
+	}
+	focus = {
+		id = ZYE_communist_komunistyczna_propaganda
+		icon = GFX_focus_hol_the_foundations_of_defense
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_przejecie_zywiec_memes
+		prerequisite = { focus = ZYE_communist_przejecie_zywiec_memes }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = trybuna_zywiecka
+		}
+	}
+	focus = {
+		id = ZYE_communist_czystki_w_zarzadach
+		icon = GFX_focus_SOV_the_last_purge
+		
+		x = -3
+		y = 1
+		relative_position_id = ZYE_communist_potwierdzenie_zwiazku
+		prerequisite = { focus = ZYE_communist_potwierdzenie_zwiazku }
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = czystka1
+		}
+	}
+	focus = {
+		id = ZYE_communist_nowa_podstawa_programowa
+		icon = GFX_goal_generic_forceful_treaty
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_czystki_w_zarzadach
+		prerequisite = { focus = ZYE_communist_czystki_w_zarzadach }
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.1
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = ZYE_communist_nowa_partia_komunistyczna
+		icon = GFX_focus_generic_soviet_politics
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_nowa_podstawa_programowa
+		prerequisite = { focus = ZYE_communist_nowa_podstawa_programowa }
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = czystka1
+		}
+	}
+	focus = {
+		id = ZYE_communist_walka_z_goralskimi_partyzantami
+		icon = GFX_focus_prc_infiltration
+		
+		x = -5
+		y = 1
+		relative_position_id = ZYE_communist_potwierdzenie_zwiazku
+		prerequisite = { focus = ZYE_communist_potwierdzenie_zwiazku }
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			
+				add_idea = bunt_gorali2
+				remove_idea = bunt_gorali
+			}
+		}
+	}
+	focus = {
+		id = ZYE_communist_niszczenie_goralskich_tradycji
+		icon = GFX_focus_hol_legacy_of_the_de_zeven_provincien_mutiny
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_walka_z_goralskimi_partyzantami
+		prerequisite = { focus = ZYE_communist_walka_z_goralskimi_partyzantami }
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = -0.1
+		}
+	}
+	focus = {
+		id = ZYE_communist_ostateczne_rozwiazanie_kwestii_goralskiej
+		icon = GFX_goal_ZYE_gorale
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_communist_niszczenie_goralskich_tradycji
+		prerequisite = { focus = ZYE_communist_niszczenie_goralskich_tradycji } 
+		prerequisite = { focus = ZYE_communist_nowa_partia_komunistyczna }
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = bunt_gorali2
+			add_ideas = zywiecki_kosmopolityzm
+		}
+	}
+	
+	focus = {
+		id = ZYE_communist_plan_zniszczenia_kapitalizmu
+		icon = GFX_focus_generic_strike_at_democracy2
+		
+		x = 0
+		y = 4
+		relative_position_id = ZYE_communist_zakazanie_konfy
+		prerequisite = { focus = ZYE_communist_zakazanie_konfy } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#has_completed_focus = ZYE_communist_ostateczne_rozwiazanie_kwestii_goralskiej
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = SOV_liberation_of_the_european_proletariat_ns
+		}
+	}
+	focus = {
+		id = ZYE_communist_sojusz_z_zsrr
+		icon = GFX_focus_chi_mission_to_the_soviet_union
+		
+		x = -6
+		y = 4
+		relative_position_id = ZYE_communist_plan_zniszczenia_kapitalizmu
+		prerequisite = { focus = ZYE_communist_plan_zniszczenia_kapitalizmu } 
+		mutually_exclusive = {focus = ZYE_communist_jedyny_prawdziwy_komunizm }
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = { has_war_with = SOV }
+			is_subject = no
+			is_in_faction = no
+			NOT = {
+				any_other_country = {
+					is_in_faction_with = SOV
+					has_war_with = ZYE	
+				}
+			}
+			SOV = {
+				is_faction_leader = yes
+				is_subject = no
+			}
+		}
+
+		bypass = {
+			AND = { 
+				is_in_faction_with = SOV
+				SOV = {
+					is_faction_leader = yes
+				}
+			} 
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				SOV = {
+					country_event = generic.2
+				}
+			}
+	}
+	focus = {
+		id = ZYE_communist_wspolpraca_z_radzieckimi_oficerami
+		icon = GFX_focus_generic_military_mission
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_sojusz_z_zsrr
+		prerequisite = { focus = ZYE_communist_sojusz_z_zsrr } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+		create_corps_commander = {
+	name = "Yakov Cherevichenko"
+	portraits = {
+			army = {
+				large = "GFX_portrait_SOV_yakov_cherevichenko"
+				small= "GFX_idea_SOV_yakov_cherevichenko"
+			}
+		}
+	traits = { cavalry_officer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+	name = "Maks Reyter"
+	portraits = {
+			army = {
+				large = "GFX_portrait_SOV_maks_reyter"
+				small=GFX_portrait_SOV_maks_reyter_small
+			}
+		}
+	traits = { career_officer }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+	name = "Nikandr Chibisov"
+	portraits = {
+			army = {
+				large = GFX_portrait_SOV_nikandr_chibisov
+				small=GFX_portrait_SOV_nikandr_chibisov_small
+			}
+		}
+	traits = { trickster }
+			skill = 3
+			attack_skill = 1
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 3
+		}
+
+		}
+	}
+	focus = {
+		id = ZYE_communist_rozbior_polski
+		icon = GFX_goal_generic_dangerous_deal
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_wspolpraca_z_radzieckimi_oficerami
+		prerequisite = { focus = ZYE_communist_wspolpraca_z_radzieckimi_oficerami } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			POL = {has_capitulated = no} 
+		}
+		
+		bypass = {
+			NOT = {country_exists = GER}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			POL = {country_event = zywiec.10}
+		}
+	}
+	focus = {
+		id = ZYE_communist_radzieckie_inwestycje
+		icon = GFX_goal_generic_soviet_construction
+		
+		x = -2
+		y = 1
+		relative_position_id = ZYE_communist_wspolpraca_z_radzieckimi_oficerami
+		prerequisite = { focus = ZYE_communist_wspolpraca_z_radzieckimi_oficerami } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 40
+				state = 970
+			}
+			add_resource = {
+				type = tungsten
+				amount = 30
+				state = 971
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = arms_factory 
+				level = 4
+				instant_build = yes
+				
+				}
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = industrial_complex 
+				level = 4
+				instant_build = yes
+				
+				}
+			}
+		}
+		}
+		focus = {
+		id = ZYE_communist_naprawienie_gospodarki_centralnie_planowanej
+		icon = GFX_focus_generic_communist_industry
+		
+		x = 3
+		y = 1
+		relative_position_id = ZYE_communist_sojusz_z_zsrr
+		prerequisite = { focus = ZYE_communist_sojusz_z_zsrr focus = ZYE_communist_jedyny_prawdziwy_komunizm } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			has_completed_focus = ZYE_communist_reforma_podatkowa
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = gospodarka_centralnie_planowana2
+			add_idea = gospodarka_centralnie_planowana3
+			}
+		}
+	}
+	focus = {
+		id = ZYE_communist_polaczenie_z_zsrr
+		icon = GFX_focus_SOV_socialism_in_one_country
+		
+		x = 0
+		y = 5
+		relative_position_id = ZYE_communist_rozbior_polski
+		prerequisite = { focus = ZYE_communist_rozbior_polski } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			date > 1942.6.1
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			SOV = {country_event = zywiec.8}
+		}
+	}
+	focus = {
+		id = ZYE_communist_jedyny_prawdziwy_komunizm
+		icon = GFX_focus_SWE_socialist_reforms
+		
+		x = 4
+		y = 4
+		relative_position_id = ZYE_communist_plan_zniszczenia_kapitalizmu
+		prerequisite = { focus = ZYE_communist_plan_zniszczenia_kapitalizmu } 
+		mutually_exclusive = {focus = ZYE_communist_sojusz_z_zsrr }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_war_support = 0.20
+				970 = {	create_unit = {
+					division = "name = \"Żywiecka dywizja wyzwoleńcza\" division_template = \"Piechota Żywiecka\"start_experience_factor = 0.6" owner = ZYE
+					count = 20
+					prioritize_location = 13363
+					}
+				}
+			}
+	}	
+	focus = {
+		id = ZYE_communist_podboj_polski
+		icon = GFX_goal_generic_major_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_jedyny_prawdziwy_komunizm
+		prerequisite = { focus = ZYE_communist_jedyny_prawdziwy_komunizm } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = atak_z_zaskoczenia
+				days = 40
+			}
+				create_wargoal = {
+				target = POL
+				type = annex_everything
+			}	
+		}
+	}
+	focus = {
+		id = ZYE_communist_zaniesmy_rewolucje_na_zachod
+		icon = GFX_goal_support_fourth_int
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_podboj_polski
+		prerequisite = { focus = ZYE_communist_podboj_polski } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				GER = {start_civil_war = {
+    ruling_party = communism
+    ideology = FASCISM
+    size = 0.2
+	keep_all_characters = yes
+    keep_political_leader = yes
+    keep_political_party_members = yes
+		}
+			}	
+		}
+	}
+	focus = {
+		id = ZYE_communist_wsparcie_niemieckich_komunistow
+		icon = GFX_goal_generic_small_arms
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_zaniesmy_rewolucje_na_zachod
+		prerequisite = { focus = ZYE_communist_zaniesmy_rewolucje_na_zachod } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			GER ={has_civil_war = yes}
+			
+		}
+
+		bypass = {
+			GER ={has_civil_war = no}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				GER = {
+			add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 3000
+			producer = ZYE
+	}		
+	}	
+		}
+	}
+	focus = {
+		id = ZYE_communist_zniszczenie_stalinizmu
+		icon = GFX_focus_ger_strike_at_the_source
+		
+		x = 0
+		y = 4
+		relative_position_id = ZYE_communist_wsparcie_niemieckich_komunistow
+		prerequisite = { focus = ZYE_communist_wsparcie_niemieckich_komunistow } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			GER ={has_civil_war = no}
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				create_wargoal = {
+				type = annex_everything
+				target = SOV
+				}	
+		}
+	}
+	focus = {
+		id = ZYE_communist_wsparcie_trockiego
+		icon = GFX_focus_fra_loyalty_trotzky
+		
+		x = 4
+		y = 1
+		relative_position_id = ZYE_communist_wsparcie_niemieckich_komunistow
+		prerequisite = { focus = ZYE_communist_wsparcie_niemieckich_komunistow } 
+		mutually_exclusive = {focus = ZYE_communist_nasz_wlasny_komunizm}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = { has_global_flag = flag_trotsky_dead }
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_ideas = zywiecki_trockizm
+		}
+	}
+	focus = {
+		id = ZYE_communist_nasz_wlasny_komunizm
+		icon = GFX_focus_generic_join_comintern
+		
+		x = 6
+		y = 1
+		relative_position_id = ZYE_communist_wsparcie_niemieckich_komunistow
+		prerequisite = { focus = ZYE_communist_wsparcie_niemieckich_komunistow } 
+		mutually_exclusive = {focus = ZYE_communist_wsparcie_trockiego}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_ideas = nasza_komuna
+		}
+	}
+	focus = {
+		id = ZYE_communist_spuscizna_gorali
+		icon = GFX_goal_ZYE_gorale_komuna
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_nasz_wlasny_komunizm
+		prerequisite = { focus = ZYE_communist_nasz_wlasny_komunizm } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				swap_ideas = {
+				remove_idea = nasza_komuna
+				add_idea = goralizm
+				}
+		}
+	}
+	focus = {
+		id = ZYE_communist_wojna_z_aliantami
+		icon = GFX_goal_generic_major_war
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_communist_wsparcie_niemieckich_komunistow
+		prerequisite = { focus = ZYE_communist_wsparcie_niemieckich_komunistow } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			 
+		}
+
+		available = {
+			NOT = {is_in_faction_with = ENG}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				create_wargoal = {
+				type = annex_everything
+				target = ENG
+				}
+		}
+	}
+	focus = {
+		id = ZYE_communist_ostateczny_wrog
+		icon = GFX_focus_generic_strike_at_democracy3
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_wojna_z_aliantami
+		prerequisite = { focus = ZYE_communist_wojna_z_aliantami } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				create_wargoal = {
+				type = annex_everything
+				target = USA
+				}
+		}
+	}
+	focus = {
+		id = ZYE_communist_destablilizacja_stanow_zjednoczonych
+		icon = GFX_focus_generic_conspiracy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_ostateczny_wrog
+		prerequisite = { focus = ZYE_communist_ostateczny_wrog } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			has_war_with = USA
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				USA = {
+				add_popularity = {
+					ideology = communism
+					popularity = 0.2
+				}
+				add_stability = -0.3
+				add_war_support = -0.3
+				}
+		}
+	}
+	focus = {
+		id = ZYE_communist_plan_polnoc
+		icon = GFX_focus_generic_attack_nordic_territory
+		
+		x = 5
+		y = 1
+		relative_position_id = ZYE_communist_sojusz_z_zsrr
+		prerequisite = { focus = ZYE_communist_sojusz_z_zsrr focus = ZYE_communist_jedyny_prawdziwy_komunizm } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				SWE = {add_ideas = internationalism}
+				NOR = {add_ideas = internationalism}
+				DEN = {add_ideas = internationalism}
+				FIN = {add_ideas = internationalism}
+				ICE = {add_ideas = internationalism}
+		}
+	}
+	focus = {
+		id = ZYE_communist_zajecie_baltyku
+		icon = GFX_focus_LAT_threat_on_our_border
+		
+		x = 0
+		y = 4
+		relative_position_id = ZYE_communist_plan_polnoc
+		prerequisite = { focus = ZYE_communist_plan_polnoc  } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				create_wargoal = {
+				type = annex_everything
+				target = LIT
+				}
+				create_wargoal = {
+				type = annex_everything
+				target = LAT
+				}
+				create_wargoal = {
+				type = annex_everything
+				target = EST
+				}
+		}
+	}
+	focus = {
+		id = ZYE_communist_plan_poludnie
+		icon = GFX_focus_generic_balkans_focus
+		
+		x = 7
+		y = 1
+		relative_position_id = ZYE_communist_sojusz_z_zsrr
+		prerequisite = { focus = ZYE_communist_sojusz_z_zsrr focus = ZYE_communist_jedyny_prawdziwy_komunizm } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				CZE = {add_ideas = internationalism}
+				HUN = {add_ideas = internationalism}
+				YUG = {add_ideas = internationalism}
+				BUL = {add_ideas = internationalism}
+				ROM = {add_ideas = internationalism}
+				GRE = {add_ideas = internationalism}
+		}
+	}
+	focus = {
+		id = ZYE_communist_uwolnienie_czechoslowackich_robotnikow
+		icon = GFX_focus_generic_support_the_left_right
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_plan_poludnie
+		prerequisite = { focus = ZYE_communist_plan_poludnie  } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				create_wargoal = {
+				type = annex_everything
+				target = CZE
+				}
+				add_timed_idea = {
+				idea = atak_z_zaskoczenia
+				days = 30
+				}
+				
+		}
+	}
+	focus = {
+		id = ZYE_communist_smierc_wegierskim_faszystom
+		icon = GFX_focus_hun_assassinate_horthy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_uwolnienie_czechoslowackich_robotnikow
+		prerequisite = { focus = ZYE_communist_uwolnienie_czechoslowackich_robotnikow  } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				create_wargoal = {
+				type = annex_everything
+				target = HUN
+				}
+				
+		}
+	}
+	focus = {
+		id = ZYE_communist_czas_na_rumunie
+		icon = GFX_focus_generic_attack_romania
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_smierc_wegierskim_faszystom
+		prerequisite = { focus = ZYE_communist_smierc_wegierskim_faszystom  } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				create_wargoal = {
+				type = annex_everything
+				target = ROM
+				}
+				
+		}
+	}
+	focus = {
+		id = ZYE_communist_komunistyczne_balkany
+		icon = GFX_focus_BUL_bulgaria_on_the_three_seas
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_communist_czas_na_rumunie
+		prerequisite = { focus = ZYE_communist_czas_na_rumunie  } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				create_wargoal = {
+				type = annex_everything
+				target = YUG
+				}
+				create_wargoal = {
+				type = annex_everything
+				target = BUL
+				}
+				create_wargoal = {
+				type = annex_everything
+				target = GRE
+				}
+				
+		}
+	}
+	focus = {
+		id = ZYE_communist_demokratyczna_republika_srodkowoeuropejska
+		icon = GFX_focus_BUL_cooperate_with_the_zveno
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_communist_komunistyczne_balkany
+		prerequisite = { focus = ZYE_communist_komunistyczne_balkany focus = ZYE_communist_zajecie_baltyku  } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			controls_state = 9
+			controls_state = 10
+			controls_state = 43
+			controls_state = 46
+			controls_state = 48
+			controls_state = 107
+			controls_state = 47
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				every_state = {
+				limit = {
+				OR = {
+					is_core_of = CZE 
+					is_core_of = HUN 
+					is_core_of = YUG 
+					is_core_of = ROM 
+					is_core_of = GRE 
+					is_core_of = BUL
+				
+				}
+				}
+				add_core_of = ZYE
+				}
+				
+				
+		}
+	}
+	focus = {
+		id = ZYE_communist_proletariusze_wszystkich_krajow_laczcie_sie
+		icon = GFX_focus_SOV_proclaim_soviet_hegemony
+		
+		x = -1
+		y = 2
+		relative_position_id = ZYE_communist_demokratyczna_republika_srodkowoeuropejska
+		prerequisite = { focus = ZYE_communist_zniszczenie_stalinizmu focus = ZYE_communist_polaczenie_z_zsrr} 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			controls_state = 64
+			controls_state = 126
+			controls_state = 16
+			controls_state = 2
+			controls_state = 219
+			controls_state = 282
+			controls_state = 361
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = { 
+				every_state = {
+				
+				add_core_of = ZYE
+				}
+				
+				
+		}
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		#############DEMOCRACY
+		
+	focus = {
+		id = ZYE_democracy_win
+		icon = GFX_goal_support_democracy
+		
+		x = 10
+		y = 2
+		relative_position_id = ZYE_time_of_decision
+		prerequisite = { focus = ZYE_time_of_decision }
+		mutually_exclusive = {focus = ZYE_szlagor_win}
+		mutually_exclusive = {focus = ZYE_communist_win}
+		mutually_exclusive = {focus = ZYE_fascism_win}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				JAP = { has_government = communism }
+				factor = 0
+			}
+		}
+
+		available = {
+			NOT = {has_active_mission = ZYE_czas_na_wybory}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.3
+				}
+			
+			ZYE = { country_event = zywiec.12 }
+		}
+	}
+	focus = {
+		id = ZYE_democracy_ustawa_o_obronie_zywiecczyzny
+		icon = GFX_goal_generic_allies_build_infantry
+		
+		x = 4
+		y = 2
+		relative_position_id = ZYE_democracy_zwyciestwo_widzyka
+		prerequisite = { focus = ZYE_democracy_zwyciestwo_widzyka focus = ZYE_democracy_zwyciestwo_piatka }
+
+		cost = 5
+
+
+		available = {
+			is_subject = no
+		}
+		
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			division_template = {
+    name = "Dywizje obrony Żywiecczyzny"
+    regiments = {
+        infantry = { x = 0 y = 0 }
+        infantry = { x = 0 y = 1 }
+        infantry = { x = 0 y = 2 }
+        infantry = { x = 0 y = 3 }
+        infantry = { x = 1 y = 0 }
+        
+    }
+}
+		970 = {	create_unit = {
+		division = "name = \"Dywizja Obrony Żywiecczyzny\" division_template = \"Dywizje obrony Żywiecczyzny\"start_experience_factor = 0.6" owner = ZYE
+		count = 5
+		prioritize_location = 13363
+			}
+		}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_strategie_obronne
+		icon = GFX_goal_generic_defence
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_ustawa_o_obronie_zywiecczyzny
+		prerequisite = { focus = ZYE_democracy_ustawa_o_obronie_zywiecczyzny}
+
+		cost = 5
+
+
+		available = {
+			AND = {
+				NOT = {has_completed_focus = ZYE_democracy_nasza_jedyna_nadzieja}
+				NOT = {has_completed_focus = ZYE_democracy_obalic_sanacje}
+			}	
+			
+		}
+		
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = strategie_obronne
+		}
+	}
+	focus = {
+		id = ZYE_democracy_dalszy_rozwoj_strategii_obronnych
+		icon = GFX_goal_generic_defence
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_strategie_obronne
+		prerequisite = { focus = ZYE_democracy_strategie_obronne}
+
+		cost = 5
+
+
+		available = {
+			AND = {
+				NOT = {has_completed_focus = ZYE_democracy_nasza_jedyna_nadzieja}
+				NOT = {has_completed_focus = ZYE_democracy_obalic_sanacje}
+			}	
+			
+		}
+		
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = strategie_obronne
+			add_idea = strategie_obronne2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_konstytucja_zywiecka
+		icon = GFX_focus_TUR_ratify_the_six_arrows
+		
+		x = 2
+		y = 2
+		relative_position_id = ZYE_democracy_zwyciestwo_widzyka
+		prerequisite = { focus = ZYE_democracy_zwyciestwo_widzyka focus = ZYE_democracy_zwyciestwo_piatka }
+		
+		
+		cost = 5
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			add_ideas = zywiecka_konstytucja
+		}
+	}
+	focus = {
+		id = ZYE_democracy_rozszerzenie_konstytucji
+		icon = GFX_focus_renounce_the_treaty_of_trianon
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_democracy_konstytucja_zywiecka
+		prerequisite = { focus = ZYE_democracy_konstytucja_zywiecka }
+		
+		
+		cost = 5
+
+		available = {
+			democratic > 0.6
+			date > 1938.6.1
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = zywiecka_konstytucja
+			add_idea = zywiecka_konstytucja2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_prawdziwie_demokratyczna_konstytucja
+		icon = GFX_focus_generic_treaty
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_democracy_rozszerzenie_konstytucji
+		prerequisite = { focus = ZYE_democracy_rozszerzenie_konstytucji }
+		
+		
+		cost = 5
+
+		available = {
+			democratic > 0.9
+			date > 1940.6.1
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = zywiecka_konstytucja2
+			add_idea = zywiecka_konstytucja3
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_zwyciestwo_widzyka
+		icon = GFX_focus_generic_the_giant_wakes
+		
+		x = -4
+		y = 2
+		relative_position_id = ZYE_democracy_win
+		prerequisite = { focus = ZYE_democracy_win }
+		mutually_exclusive = {focus = ZYE_democracy_zwyciestwo_piatka}
+		
+		cost = 5
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.1
+				}
+			hidden_effect =  {ZYE = { country_event = zywiec.18 }}
+			
+		}
+	}
+	focus = {
+		id = ZYE_democracy_tvp_zywiec
+		icon = GFX_goal_generic_propaganda
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_democracy_zwyciestwo_widzyka
+		prerequisite = { focus = ZYE_democracy_zwyciestwo_widzyka }
+
+		cost = 5
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+				}
+			add_stability = 0.05
+			add_war_support = 0.05
+			remove_ideas = zywiec_memes
+		}
+	}
+	focus = {
+		id = ZYE_democracy_odzyskanie_wladzy_w_polsce
+		icon = GFX_focus_generic_polish_deal
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_tvp_zywiec
+		prerequisite = { focus = ZYE_democracy_tvp_zywiec }
+
+		cost = 5
+
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = {
+				limit = {is_core_of = POL}
+				add_core_of = ZYE	
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_obalic_sanacje
+		icon = GFX_focus_generic_support_the_left_right
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_odzyskanie_wladzy_w_polsce
+		prerequisite = { focus = ZYE_democracy_odzyskanie_wladzy_w_polsce }
+
+		cost = 5
+
+
+		available = {
+			has_war_with = POL
+			date > 1937.10.01
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+			limit = {has_idea = strategie_obronne}
+			remove_ideas = strategie_obronne
+			}
+			if = {
+			limit = {has_idea = strategie_obronne2}
+			remove_ideas = strategie_obronne2
+			}
+			add_timed_idea = {idea = atak_z_zaskoczenia days = 40}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_swiatowa_demokracja
+		icon = GFX_goal_generic_national_unity
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_obalic_sanacje
+		prerequisite = { focus = ZYE_democracy_obalic_sanacje }
+
+		cost = 5
+
+
+		available = {
+			NOT ={has_war_with = POL}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			ENG = {add_to_faction = ZYE}
+			ENG ={add_opinion_modifier = {
+				target = ZYE
+				modifier = huge_increase
+			}}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_zakonczenie_polityki_appeasementu
+		icon = GFX_goal_generic_major_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_swiatowa_demokracja
+		prerequisite = { focus = ZYE_democracy_swiatowa_demokracja }
+
+		cost = 5
+
+
+		available = {
+			NOT ={has_war_with = POL}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country ={
+			limit = {is_in_faction_with = ZYE}
+			add_ideas = war_economy 
+			add_ideas = extensive_conscription
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_zagrozenie_z_zachodu
+		icon = GFX_focus_attack_germany
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_zakonczenie_polityki_appeasementu
+		prerequisite = { focus = ZYE_democracy_zakonczenie_polityki_appeasementu }
+
+		cost = 5
+
+
+		available = {
+			NOT ={has_war_with = POL}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+            target = GER
+            type = topple_government
+        }
+		add_ideas = zniszczenie_rzeszy
+		}
+	}
+	focus = {
+		id = ZYE_democracy_zagrozenie_ze_wschodu
+		icon = GFX_focus_SWE_the_beast_stirs
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_zagrozenie_z_zachodu
+		prerequisite = { focus = ZYE_democracy_zagrozenie_z_zachodu }
+
+		cost = 5
+
+
+		available = {
+			GER ={NOT={has_government = fascism}}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+            target = SOV
+            type = topple_government
+        }
+		}
+	}
+	focus = {
+		id = ZYE_democracy_demokratyczny_swiat
+		icon = GFX_goal_support_democracy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_zagrozenie_ze_wschodu
+		prerequisite = { focus = ZYE_democracy_zagrozenie_ze_wschodu }
+
+		cost = 5
+
+
+		available = {
+			SOV ={NOT={has_government = communism}}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+						every_country = {
+						limit = {NOT = {has_government = democratic}}
+						country_event = zywiec.13
+				}
+			}
+	}
+	focus = {
+		id = ZYE_democracy_zwyciestwo_piatka
+		icon = GFX_focus_generic_the_giant_wakes
+		
+		x = 4
+		y = 2
+		relative_position_id = ZYE_democracy_win
+		prerequisite = { focus = ZYE_democracy_win }
+		mutually_exclusive = {focus = ZYE_democracy_zwyciestwo_widzyka}
+
+		cost = 5
+
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.1
+				}
+			hidden_effect =  {ZYE = { country_event = zywiec.18 }}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_poprawa_relacji_z_niemcami
+		icon = GFX_focus_chi_mission_to_germany
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_zwyciestwo_piatka
+		prerequisite = { focus = ZYE_democracy_zwyciestwo_piatka }
+
+		cost = 5
+
+
+		available = {
+			has_war_with = POL
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			GER ={add_opinion_modifier = {
+				target = ZYE
+				modifier = huge_increase
+			}}
+			
+		}
+	}
+	focus = {
+		id = ZYE_democracy_niemiecka_pomoc_wojskowa
+		icon = GFX_goal_generic_small_arms
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_poprawa_relacji_z_niemcami
+		prerequisite = { focus = ZYE_democracy_poprawa_relacji_z_niemcami }
+
+		cost = 10
+
+
+		available = {
+			has_war_with = POL
+		}
+		
+		bypass = {
+			NOT = {has_war_with = POL}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = GER
+			}
+			add_equipment_to_stockpile = {
+				type = artillery
+				amount = 500
+				producer = GER
+			}
+			add_doctrine_cost_reduction = {
+			cost_reduction = 0.8
+			uses = 3
+			category = cat_mobile_warfare
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_nasza_jedyna_nadzieja
+		icon = GFX_focus_CZE_german_puppet
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_niemiecka_pomoc_wojskowa
+		prerequisite = { focus = ZYE_democracy_niemiecka_pomoc_wojskowa }
+
+		cost = 5
+
+
+		available = {
+			has_war_with = POL
+		}
+		
+		bypass = {
+			 NOT = {has_war_with = POL}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+			limit = {has_idea = strategie_obronne}
+			remove_ideas = strategie_obronne
+			}
+			if = {
+			limit = {has_idea = strategie_obronne2}
+			remove_ideas = strategie_obronne2
+			}
+			GER = {
+			puppet = ZYE
+			declare_war_on = {
+				target = POL
+				type = annex_everything
+			}
+			}
+			hidden_effect = {	
+				set_politics = {
+				ruling_party = democratic
+				elections_allowed = yes}
+				add_popularity = {
+				ideology = democratic
+				popularity = 0.2
+				}
+				GER = {unlock_national_focus = my_focus}
+			}
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_podzial_czechoslowacji
+		icon = GFX_goal_generic_territory_or_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_nasza_jedyna_nadzieja
+		prerequisite = { focus = ZYE_democracy_nasza_jedyna_nadzieja }
+
+		cost = 5
+
+
+		available = {
+			NOT = { has_war_with = POL}
+		}
+		
+		bypass = {
+			NOT = {country_exists = CZE}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			CZE = {country_event = zywiec.15}
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_przygotowania_do_wielkiej_wojny
+		icon = GFX_goal_generic_construct_mil_factory
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_podzial_czechoslowacji
+		prerequisite = { focus = ZYE_democracy_podzial_czechoslowacji }
+
+		cost = 10
+
+
+		available = {
+			is_in_faction_with = GER
+		}
+		
+		bypass = {
+			NOT = {country_exists = GER}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = industrial_complex 
+				level = 5
+				instant_build = yes
+				
+				}
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = industrial_complex 
+				level = 5
+				instant_build = yes
+				
+				}
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = arms_factory 
+				level = 5
+				instant_build = yes
+				
+				}
+			}
+			random_owned_controlled_state  = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = arms_factory 
+				level = 5
+				instant_build = yes
+				
+				}
+			}
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_noz_w_plecy
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_przygotowania_do_wielkiej_wojny
+		prerequisite = { focus = ZYE_democracy_przygotowania_do_wielkiej_wojny }
+
+		cost = 5
+
+
+		available = {
+			
+		}
+		
+		bypass = {
+			NOT = {country_exists = GER}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			white_peace = ENG
+			white_peace = FRA
+			GER = {set_autonomy = {
+				target = ZYE
+				autonomous_state = autonomy_free
+				end_wars = no
+				end_civil_wars = no
+			}}
+			leave_faction = yes
+			declare_war_on = {
+			target = GER
+			type = annex_everything
+			}
+			add_timed_idea = {idea = atak_z_zaskoczenia days = 10}
+			add_ideas = zniszczenie_rzeszy
+			
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_poparcie_wloch
+		icon = GFX_focus_befriend_italy
+		
+		x = 5
+		y = 1
+		relative_position_id = ZYE_democracy_nasza_jedyna_nadzieja
+		prerequisite = { focus = ZYE_democracy_nasza_jedyna_nadzieja }
+		
+
+		cost = 5
+
+
+		available = {
+			NOT = { has_war_with = POL}
+		}
+		
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			ITA ={add_opinion_modifier = {
+				target = ZYE
+				modifier = huge_increase
+			}}
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_oslabienie_niemieckiej_kontroli
+		icon = GFX_goal_generic_demand_territory
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_poparcie_wloch
+		prerequisite = { focus = ZYE_democracy_poparcie_wloch }
+
+		cost = 5
+
+
+		available = {
+			#NOT = {  }
+		}
+		
+		bypass = {
+			is_subject = no
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = droga_do_wolnosci
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_pomoc_niemcom_na_froncie
+		icon = GFX_goal_generic_military_deal
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_oslabienie_niemieckiej_kontroli
+		prerequisite = { focus = ZYE_democracy_oslabienie_niemieckiej_kontroli }
+
+		cost = 5
+
+
+		available = {
+			GER = {has_war = yes}
+			has_equipment = {
+				infantry_equipment > 10000
+			}
+		}
+		
+		bypass = {
+			NOT = {country_exists = GER}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 10000
+				target = GER
+			}
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_nadzieja_na_wolnosc
+		icon = GFX_goal_support_democracy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_pomoc_niemcom_na_froncie
+		prerequisite = { focus = ZYE_democracy_pomoc_niemcom_na_froncie }
+
+		cost = 5
+
+
+		available = {
+			
+		}
+		
+		bypass = {
+			is_subject = no
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = droga_do_wolnosci
+			add_idea = droga_do_wolnosci2
+			
+			}
+		}	
+	}
+	focus = {
+		id = ZYE_democracy_fur_deutschland
+		icon = GFX_focus_ger_reichskommisariats
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_democracy_nasza_jedyna_nadzieja
+		prerequisite = { focus = ZYE_democracy_nasza_jedyna_nadzieja }
+
+		cost = 5
+
+
+		available = {
+			NOT = { has_war_with = POL}
+			is_in_faction_with = GER
+		}
+		
+		bypass = {
+			NOT = {is_in_faction_with = GER}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = wspolpraca_z_niemcami
+			remove_ideas = zywiec_memes
+		}
+		
+	}
+	focus = {
+		id = ZYE_democracy_dalsza_wspolpraca_z_niemcami
+		icon = GFX_focus_generic_tank_production
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_democracy_nadzieja_na_wolnosc
+		prerequisite = { focus = ZYE_democracy_fur_deutschland }
+		prerequisite = { focus = ZYE_democracy_nadzieja_na_wolnosc }
+
+		cost = 5
+
+
+		available = {
+			is_subject = no
+		}
+		
+		bypass = {
+			NOT = {is_in_faction_with = GER}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = wspolpraca_z_niemcami
+			add_idea = wspolpraca_z_niemcami2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_fortyfikacja_granic_soviet
+		icon = GFX_goal_fortify_the_westwall
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_fur_deutschland
+		prerequisite = { focus = ZYE_democracy_fur_deutschland }
+
+		cost = 5
+
+
+		available = {
+			controls_state = 91
+			controls_state = 93
+			controls_state = 94
+			controls_state = 95
+			controls_state = 96
+		}
+		
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {idea = budowa_bunkrow days = 180}
+			91  = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						}
+				}
+			}
+			93  = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						}
+				}
+			}
+			94  = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						}
+				}
+			}
+			95  = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						}
+				}
+			}
+			96  = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ZYE_democracy_wojna_z_sovietem
+		icon = GFX_goal_generic_war_with_comintern
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_democracy_fortyfikacja_granic_soviet
+		prerequisite = { focus = ZYE_democracy_fortyfikacja_granic_soviet }
+
+		cost = 5
+
+
+		available = {
+			is_subject = no
+		}
+		
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {
+			idea = atak_z_zaskoczenia
+			days = 10
+			}
+			create_wargoal = {
+			target = SOV
+			type = annex_everything
+			}
+		}
+	}
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		#############FASCISM
+		
+	focus = {
+		id = ZYE_fascism_win
+		icon = GFX_goal_support_fascism
+		
+		x = 27
+		y = 2
+		relative_position_id = ZYE_time_of_decision
+		prerequisite = { focus = ZYE_time_of_decision }
+		mutually_exclusive = {focus = ZYE_szlagor_win}
+		mutually_exclusive = {focus = ZYE_communist_win}
+		mutually_exclusive = {focus = ZYE_democracy_win}
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {has_active_mission = ZYE_czas_na_wybory}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.3
+				}
+			set_country_leader_ideology = fascism
+			set_politics = {
+				ruling_party = fascism
+				elections_allowed = no
+				}
+			hidden_effect =  {ZYE = { country_event = zywiec.1 }}
+			add_ideas = bunt_gorali	
+		}
+	}
+	focus = {
+		id = ZYE_fascism_zbieranie_poparcia_ludzi
+		icon = GFX_focus_generic_military_academy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_win
+		prerequisite = { focus = ZYE_fascism_win }
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.1
+				}
+			add_stability = 0.1
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = ZYE_fascism_zywiecki_militaryzm
+		icon = GFX_focus_generic_strike_at_democracy1
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_zbieranie_poparcia_ludzi
+		prerequisite = { focus = ZYE_fascism_zbieranie_poparcia_ludzi }
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.8
+				uses = 3
+				category = land_doctrine
+			}
+			add_war_support = 0.05
+			remove_ideas = zywiec_memes
+		}
+	}
+	focus = {
+		id = ZYE_fascism_zywieckie_tradycje
+		icon = GFX_goal_generic_national_unity
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_zywiecki_militaryzm
+		prerequisite = { focus = ZYE_fascism_zywiecki_militaryzm }
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = bunt_gorali
+			add_ideas = zywieckie_tradycje
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = ZYE_fascism_prawdziwy_goral
+		icon = GFX_goal_generic_national_unity
+		
+		x = -4
+		y = 1
+		relative_position_id = ZYE_fascism_zywieckie_tradycje
+		prerequisite = { focus = ZYE_fascism_zywieckie_tradycje }
+		mutually_exclusive = { focus = ZYE_fascism_prawdziwy_zywczanin }
+		
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			hidden_effect = {retire_country_leader = yes}
+			create_country_leader = {
+				name = "Daniel Flaka"
+				picture = GFX_portrait_Flaka_large
+				expire = "1965.1.1"
+				ideology = fascism_ideology
+				traits = {Prawdziwy_goral}
+			}
+			hidden_effect = {
+			CZE = {add_ideas = ku_jednosci_gor} 
+			POL = {add_ideas = ku_jednosci_gor} 
+			AUS = {add_ideas = ku_jednosci_gor} 
+			ROM = {add_ideas = ku_jednosci_gor} 
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_ku_jenosci_gor
+		icon = GFX_goal_generic_major_alliance
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_prawdziwy_goral
+		prerequisite = { focus = ZYE_fascism_prawdziwy_goral }
+		
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_faction = "Górska Ententa"
+			AUS = {country_event = generic.5}
+			CZE = {country_event = generic.5}
+			ROM = {country_event = generic.5}
+			POL = {country_event = generic.5}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_zlikwidowanie_niemieckiego_zagrozenia
+		icon = GFX_focus_attack_germany
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_ku_jenosci_gor
+		prerequisite = { focus = ZYE_fascism_ku_jenosci_gor }
+		
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {idea = atak_z_zaskoczenia days = 50}
+			create_wargoal = {
+				target = GER
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_federacja_europejskich_gorali
+		icon = GFX_goal_generic_national_unity
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_zlikwidowanie_niemieckiego_zagrozenia
+		prerequisite = { focus = ZYE_fascism_zlikwidowanie_niemieckiego_zagrozenia }
+		
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NO = {country_exists = GER}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = {
+			limit = {
+			OR = {
+			is_core_of = POL
+			is_core_of = CZE
+			is_core_of = AUS
+			is_core_of = ROM
+			}
+			}
+			add_core_of = ZYE
+			}
+			if = {
+			limit = {is_in_faction_with = POL}
+			annex_country = {
+			target = POL
+			transfer_troops = yes
+			}
+			}
+			else = {
+			create_wargoal = {
+				target = POL
+				type = annex_everything
+			}
+			}
+			if = {
+			limit = {is_in_faction_with = CZE}
+			annex_country = {
+			target = CZE
+			transfer_troops = yes
+			}
+			}
+			else = {
+			create_wargoal = {
+				target = CZE
+				type = annex_everything
+			}
+			}
+			if = {
+			limit = {is_in_faction_with = AUS}
+			annex_country = {
+			target = AUS
+			transfer_troops = yes
+			}
+			}
+			else = {
+			create_wargoal = {
+				target = AUS
+				type = annex_everything
+			}
+			}
+			if = {
+			limit = {is_in_faction_with = ROM}
+			annex_country = {
+			target = ROM
+			transfer_troops = yes
+			}
+			}
+			else = {
+			create_wargoal = {
+				target = ROM
+				type = annex_everything
+			}
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_gorale_wszystkich_krajow_laczcie_sie
+		icon = GFX_goal_ZYE_gorale
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_federacja_europejskich_gorali
+		prerequisite = { focus = ZYE_fascism_federacja_europejskich_gorali }
+		
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			AND = {
+			owns_state = 10
+			owns_state = 9
+			owns_state = 4
+			owns_state = 46
+			}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = {
+				add_core_of = ZYE
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_goralski_swiat
+		icon = GFX_goal_ZYE_gorale_komuna
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_gorale_wszystkich_krajow_laczcie_sie
+		prerequisite = { focus = ZYE_fascism_gorale_wszystkich_krajow_laczcie_sie }
+		
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country = {
+				limit = {NOT = {tag = ZYE}}
+			country_event = zywiec.13
+		}
+	}
+	}
+	focus = {
+		id = ZYE_fascism_prawdziwy_zywczanin
+		icon = GFX_goal_generic_national_unity
+		
+		x = 4
+		y = 1
+		relative_position_id = ZYE_fascism_zywieckie_tradycje
+		prerequisite = { focus = ZYE_fascism_zywieckie_tradycje }
+		mutually_exclusive = { focus = ZYE_fascism_prawdziwy_goral }
+	
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_country_leader_trait = Prawdziwy_zywczanin
+		}
+	}
+	focus = {
+		id = ZYE_fascism_przygotowania_do_utworzenia_wielkiego_zywca
+		icon = GFX_focus_generic_little_entente
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_prawdziwy_zywczanin
+		prerequisite = { focus = ZYE_fascism_prawdziwy_zywczanin }
+	
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.2
+			970 = {	create_unit = {
+					division = "name = \"Żywiecka dywizja wyzwoleńcza\" division_template = \"Piechota Żywiecka\"start_experience_factor = 0.6" owner = ZYE
+					count = 8
+					prioritize_location = 13363
+					}
+				}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_zadanie_krakowa
+		icon = GFX_goal_generic_territory_or_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_przygotowania_do_utworzenia_wielkiego_zywca
+		prerequisite = { focus = ZYE_fascism_przygotowania_do_utworzenia_wielkiego_zywca }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			POL = {country_event = zywiec.19}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_przejecie_slowacji
+		icon = GFX_goal_generic_position_armies
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_fascism_zadanie_krakowa
+		prerequisite = { focus = ZYE_fascism_zadanie_krakowa }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			CZE = {country_event = zywiec.21}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_przejecie_rumunskich_karpat
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_fascism_zadanie_krakowa
+		prerequisite = { focus = ZYE_fascism_zadanie_krakowa }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			ROM = {country_event = zywiec.23}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_utworzenie_wielkiego_zywca
+		icon = GFX_goal_ZYE_imperium
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_fascism_przejecie_slowacji
+		prerequisite = { focus = ZYE_fascism_przejecie_slowacji }
+		prerequisite = { focus = ZYE_fascism_przejecie_rumunskich_karpat }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = wielki_zywiec_fasc
+			set_rule = {can_create_factions = yes}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_poporzadkowanie_sasiadow
+		icon = GFX_goal_generic_major_war
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_utworzenie_wielkiego_zywca
+		prerequisite = { focus = ZYE_fascism_utworzenie_wielkiego_zywca }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+			target = POL
+			type = annex_everything
+			}
+			create_wargoal = {
+			target = CZE
+			type = annex_everything
+			}
+			create_wargoal = {
+			target = HUN
+			type = annex_everything
+			}
+			create_wargoal = {
+			target = ROM
+			type = annex_everything
+			}
+			FRA = {diplomatic_relation = {
+					country = ROM
+					relation = guarantee
+					active = no
+				}}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_dominacja_w_europie_srodkowej
+		icon = GFX_focus_attack_germany
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_poporzadkowanie_sasiadow
+		prerequisite = { focus = ZYE_fascism_poporzadkowanie_sasiadow }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+			has_war_with = GER
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+			target = GER
+			type = annex_everything
+			}
+			add_timed_idea = {idea = atak_z_zaskoczenia days = 7}
+			add_ideas = zniszczenie_rzeszy
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rewanz_za_potop
+		icon = GFX_focus_generic_attack_sweden
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_fascism_poporzadkowanie_sasiadow
+		prerequisite = { focus = ZYE_fascism_poporzadkowanie_sasiadow }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+			has_war_with = SWE
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+			target = SWE
+			type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_dominacja_w_europie_zachodniej
+		icon = GFX_focus_generic_strike_at_democracy2
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_fascism_dominacja_w_europie_srodkowej
+		prerequisite = { focus = ZYE_fascism_dominacja_w_europie_srodkowej }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {country_exists = GER}
+		}
+		
+		bypass = {
+			has_war_with = ENG
+			has_war_with = FRA
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+			target = FRA
+			type = annex_everything
+			}
+			create_wargoal = {
+			target = ENG
+			type = annex_everything
+			}
+			add_timed_idea = {idea = atak_z_zaskoczenia days = 7}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_dominacja_w_europie_wschodniej
+		icon = GFX_goal_generic_war_with_comintern
+		
+		x = 3
+		y = 1
+		relative_position_id = ZYE_fascism_dominacja_w_europie_srodkowej
+		prerequisite = { focus = ZYE_fascism_dominacja_w_europie_srodkowej }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {country_exists = GER}
+		}
+		
+		bypass = {
+			has_war_with = SOV
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+			target = SOV
+			type = annex_everything
+			}
+			add_timed_idea = {idea = atak_z_zaskoczenia days = 7}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_zywiecki_kolonializm
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_fascism_dominacja_w_europie_srodkowej
+		prerequisite = { focus = ZYE_fascism_dominacja_w_europie_srodkowej }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {country_exists = GER}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rekolonizacja_afryki
+		icon = GFX_focus_ETH_african_union
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_fascism_zywiecki_kolonializm
+		prerequisite = { focus = ZYE_fascism_zywiecki_kolonializm }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {country_exists = GER}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			LIB = {country_event = generic.20}
+			SAF = {country_event = generic.20}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rekolonizacja_ameryki_poludniowej
+		icon = GFX_goal_generic_more_territorial_claims
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_fascism_zywiecki_kolonializm
+		prerequisite = { focus = ZYE_fascism_zywiecki_kolonializm }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			BRA = {country_event = generic.20}
+			CHL = {country_event = generic.20}
+			BOL = {country_event = generic.20}
+			URG = {country_event = generic.20}
+			COL = {country_event = generic.20}
+			PRU = {country_event = generic.20}
+			PAR = {country_event = generic.20}
+			ARG = {country_event = generic.20}
+			VEN = {country_event = generic.20}
+			ECU = {country_event = generic.20}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rekolonizacja_ameryki_polnocnej
+		icon = GFX_focus_spa_the_war_of_vengeance
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_fascism_rekolonizacja_ameryki_poludniowej
+		prerequisite = { focus = ZYE_fascism_rekolonizacja_ameryki_poludniowej }
+	
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			PAN = {country_event = generic.20}
+			COS = {country_event = generic.20}
+			GUA = {country_event = generic.20}
+			NIC = {country_event = generic.20}
+			ELS = {country_event = generic.20}
+			HON = {country_event = generic.20}
+			MEX = {country_event = generic.20}
+			USA = {country_event = generic.20}
+			CAN = {country_event = generic.20}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_spalenie_domku_chinskiego
+		icon = GFX_goal_ZYE_domek_chinski
+		
+		x = 2
+		y = 2
+		relative_position_id = ZYE_fascism_zywieckie_tradycje
+		prerequisite = { focus = ZYE_fascism_zywieckie_tradycje }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.2
+			add_war_support = 0.2
+			CHI ={add_opinion_modifier = {
+				target = ZYE
+				modifier = large_decrease
+			}}
+			
+			
+			}
+		}
+	focus = {
+		id = ZYE_fascism_prywatyzacja
+		icon = GFX_focus_mex_privatisation
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_fascism_zywieckie_tradycje
+		prerequisite = { focus = ZYE_fascism_zywieckie_tradycje }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = prywatyzacja
+			
+		}
+	}
+	focus = {
+		id = ZYE_fascism_zwiekszenie_wolnosci_gospodarczej
+		icon = GFX_goal_generic_consumer_goods
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_prywatyzacja
+		prerequisite = { focus = ZYE_fascism_prywatyzacja }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = prywatyzacja
+			add_idea = prywatyzacja2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_wolny_rynek
+		icon =  GFX_focus_usa_reestablish_the_gold_standard
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_zwiekszenie_wolnosci_gospodarczej
+		prerequisite = { focus = ZYE_fascism_zwiekszenie_wolnosci_gospodarczej }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = prywatyzacja2
+			add_idea = prywatyzacja3
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_przemysl_czolgow
+		icon =  GFX_goal_generic_army_tanks
+		
+		x = -2
+		y = 7
+		relative_position_id = ZYE_fascism_zywieckie_tradycje
+		prerequisite = { focus = ZYE_fascism_zywieckie_tradycje }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = zywieckie_czolgi
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_czolgow_lekkich1
+		icon =  GFX_focus_generic_combined_arms
+		
+		x = -2
+		y = 1
+		relative_position_id = ZYE_fascism_przemysl_czolgow
+		prerequisite = { focus = ZYE_fascism_przemysl_czolgow }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			bonus = 2
+			uses = 2
+			category = cat_light_armor
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_czolgow_srednich1
+		icon =  GFX_focus_generic_tank_production
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_przemysl_czolgow
+		prerequisite = { focus = ZYE_fascism_przemysl_czolgow }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			bonus = 2
+			uses = 2
+			category = cat_medium_armor
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_czolgow_ciezkich1
+		icon =  GFX_goal_generic_build_tank
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_fascism_przemysl_czolgow
+		prerequisite = { focus = ZYE_fascism_przemysl_czolgow }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			bonus = 2
+			uses = 2
+			category = cat_heavy_armor
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_przemyslu_czolgow_2
+		icon =  GFX_goal_generic_army_tanks
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_fascism_rozwoj_czolgow_lekkich1
+		prerequisite = { focus = ZYE_fascism_rozwoj_czolgow_lekkich1 }
+		prerequisite = { focus = ZYE_fascism_rozwoj_czolgow_srednich1 }
+		prerequisite = { focus = ZYE_fascism_rozwoj_czolgow_ciezkich1 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = zywieckie_czolgi
+			add_idea = zywieckie_czolgi2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_czolgow_lekkich2
+		icon =  GFX_focus_generic_combined_arms
+		
+		x = -2
+		y = 1
+		relative_position_id = ZYE_fascism_rozwoj_przemyslu_czolgow_2
+		prerequisite = { focus = ZYE_fascism_rozwoj_przemyslu_czolgow_2 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			bonus = 5
+			uses = 2
+			category = cat_light_armor
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_czolgow_srednich2
+		icon =  GFX_focus_generic_tank_production
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_fascism_rozwoj_przemyslu_czolgow_2
+		prerequisite = { focus = ZYE_fascism_rozwoj_przemyslu_czolgow_2 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			bonus = 5
+			uses = 2
+			category = cat_medium_armor
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_czolgow_ciezkich2
+		icon =  GFX_goal_generic_build_tank
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_fascism_rozwoj_przemyslu_czolgow_2
+		prerequisite = { focus = ZYE_fascism_rozwoj_przemyslu_czolgow_2 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			bonus = 5
+			uses = 2
+			category = cat_heavy_armor
+			}
+		}
+	}
+	focus = {
+		id = ZYE_fascism_rozwoj_przemyslu_czolgow_3
+		icon =  GFX_goal_generic_army_tanks
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_fascism_rozwoj_czolgow_lekkich2
+		prerequisite = { focus = ZYE_fascism_rozwoj_czolgow_lekkich2 }
+		prerequisite = { focus = ZYE_fascism_rozwoj_czolgow_srednich2 }
+		prerequisite = { focus = ZYE_fascism_rozwoj_czolgow_ciezkich2 }
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+			remove_idea = zywieckie_czolgi2
+			add_idea = zywieckie_czolgi3
+			}
+		}
+	}
+	
+	
+	
+	###################################
+	#########MOST WIDZYKA
+	###################################
+	
+	
+	
+	
+	focus = {
+		id = ZYE_most_plan_odbudowy_mostu
+		icon = GFX_goal_ZYE_most1
+		
+		x = 0
+		y = 1
+		###relative_position_id = ZYE_communist_nasz_wlasny_komunizm
+		###prerequisite = { focus = ZYE_communist_nasz_wlasny_komunizm } 
+		
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+		allow_branch =  {
+			OR = {has_completed_focus = ZYE_szlagor_win has_completed_focus = ZYE_communist_win}	
+		}
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				swap_ideas = {
+				remove_idea = katastrofa_komunikacyjna
+				add_idea = katastrofa_komunikacyjna1
+				}
+		}
+	}
+	focus = {
+		id = ZYE_most_zatrudnienie_ekspertow_drogowych
+		icon = GFX_focus_generic_military_academy
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_most_plan_odbudowy_mostu
+		prerequisite = { focus = ZYE_most_plan_odbudowy_mostu } 
+		
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				swap_ideas = {
+					remove_idea = katastrofa_komunikacyjna1
+					add_idea = katastrofa_komunikacyjna2
+				}
+		}
+	}
+	focus = {
+		id = ZYE_most_zlapanie_winnych
+		icon = GFX_goal_generic_neutrality_focus
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_most_plan_odbudowy_mostu
+		prerequisite = { focus = ZYE_most_plan_odbudowy_mostu } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_stability = 0.1
+		}
+	}
+	focus = {
+		id = ZYE_most_wspolny_wysilek
+		icon = GFX_goal_generic_national_unity
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_most_zlapanie_winnych
+		prerequisite = { focus = ZYE_most_zlapanie_winnych } 
+		prerequisite = { focus = ZYE_most_zatrudnienie_ekspertow_drogowych } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+		select_effect = { 
+			add_ideas = wspolny_wysilek
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				remove_ideas = katastrofa_komunikacyjna2 
+				hidden_effect = {remove_ideas = wspolny_wysilek}
+		}
+	}
+	
+	
+	
+	#############################
+	#############PRZEMYSL
+	#############################
+	
+	
+	
+	focus = {
+		id = ZYE_przemysl_inwestycje_w_miasto
+		icon = GFX_goal_generic_production
+		
+		x = 30
+		y = 0
+		#relative_position_id = ZYE_most_zlapanie_winnych
+		#prerequisite = { focus = ZYE_most_zlapanie_winnych } 
+		#prerequisite = { focus = ZYE_most_zatrudnienie_ekspertow_drogowych } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			mark_focus_tree_layout_dirty = yes
+				add_tech_bonus = {
+					bonus = 1
+					uses = 1
+					category = industry
+				}
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_oczkowa
+		icon = GFX_goal_generic_construction
+		
+		x = -8
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_redziny
+		icon = GFX_goal_generic_construction
+		
+		x = -6
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			}
+		}
+	}
+	############################
+	####FLOTA
+	############################
+	focus = {
+		id = ZYE_flota_nowy_basen_w_zywcu
+		icon = GFX_goal_generic_production2
+		
+		x = -2
+		y = 2
+		relative_position_id = ZYE_przemysl_rozbudowa_sporysza
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_sporysza } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = ZYE_flota_trenowanie_piechoty_morskiej
+		icon = GFX_goal_generic_amphibious_assault
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_flota_nowy_basen_w_zywcu
+		prerequisite = { focus = ZYE_flota_nowy_basen_w_zywcu } 
+		prerequisite = { focus = ZYE_flota_rozbudowa_zaglowek_na_jeziorze } 
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			navy_experience = 50
+			add_tech_bonus = {
+				bonus = 2
+				uses = 3
+				category = marine_tech
+				ahead_reduction = 5
+			}
+		}
+	}
+	focus = {
+		id = ZYE_flota_rozbudowa_zaglowek_na_jeziorze
+		icon = GFX_goal_generic_construct_naval_dockyard
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_przemysl_rozbudowa_redziny
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_redziny } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_offsite_building = { type = dockyard level = 2 }
+		}
+	}
+	focus = {
+		id = ZYE_flota_nowa_szkola_marynarki
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_flota_rozbudowa_zaglowek_na_jeziorze
+		prerequisite = { focus = ZYE_flota_rozbudowa_zaglowek_na_jeziorze } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			navy_experience = 100
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.8
+				uses = 2
+				category = naval_doctrine
+			}	
+		}
+	}
+	focus = {
+		id = ZYE_flota_wlaczenie_sie_do_wyscigu_zbrojen_na_morzu
+		icon = GFX_goal_generic_navy_battleship
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_flota_nowa_szkola_marynarki
+		prerequisite = { focus = ZYE_flota_nowa_szkola_marynarki } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_owned_state  = {
+				is_coastal = yes
+			}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = koncentracja_na_flocie
+			add_offsite_building = { type = dockyard level = 5 }
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 3
+				category = naval_equipment
+			}
+		}
+	}
+	focus = {
+		id = ZYE_flota_ataki_na_konwoje
+		icon = GFX_goal_generic_navy_submarine
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_flota_wlaczenie_sie_do_wyscigu_zbrojen_na_morzu
+		prerequisite = { focus = ZYE_flota_wlaczenie_sie_do_wyscigu_zbrojen_na_morzu } 
+		mutually_exclusive = { focus = ZYE_flota_bitwy_morskie } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_owned_state  = {
+				is_coastal = yes
+			}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = koncentracja_na_flocie
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.8
+				uses = 3
+				category = submarine_doctrine
+			}
+		}
+	}
+	focus = {
+		id = ZYE_flota_zywieckie_lodzie_podwodne
+		icon = GFX_goal_generic_navy_submarine
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_flota_wlaczenie_sie_do_wyscigu_zbrojen_na_morzu
+		prerequisite = { focus = ZYE_flota_wlaczenie_sie_do_wyscigu_zbrojen_na_morzu } 
+		mutually_exclusive = { focus = ZYE_flota_bitwy_morskie } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_owned_state  = {
+				is_coastal = yes
+			}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = lodzie_podwodne
+		}
+	}
+	focus = {
+		id = ZYE_flota_nowy_plan_budowy_lodzi_podwodnych
+		icon = GFX_goal_generic_navy_anti_submarine
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_flota_zywieckie_lodzie_podwodne
+		prerequisite = { focus = ZYE_flota_zywieckie_lodzie_podwodne } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_owned_state  = {
+				is_coastal = yes
+			}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = lodzie_podwodne
+				add_idea = lodzie_podwodne2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_flota_bitwy_morskie
+		icon = GFX_goal_generic_navy_cruiser
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_flota_wlaczenie_sie_do_wyscigu_zbrojen_na_morzu
+		prerequisite = { focus = ZYE_flota_wlaczenie_sie_do_wyscigu_zbrojen_na_morzu } 
+		mutually_exclusive = { focus = ZYE_flota_ataki_na_konwoje } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_owned_state  = {
+				is_coastal = yes
+			}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = wielkie_bitwy_morskie
+		}
+	}
+	focus = {
+		id = ZYE_flota_zywiecki_przemysl_stoczniowy
+		icon = GFX_goal_generic_construct_naval_dockyard
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_flota_bitwy_morskie
+		prerequisite = { focus = ZYE_flota_bitwy_morskie } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_owned_state  = {
+				is_coastal = yes
+			}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = wielkie_bitwy_morskie
+				add_idea = wielkie_bitwy_morskie2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_flota_przez_atlantyk
+		icon = GFX_focus_spa_the_war_of_vengeance
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_flota_zywiecki_przemysl_stoczniowy
+		prerequisite = { focus = ZYE_flota_zywiecki_przemysl_stoczniowy focus = ZYE_flota_nowy_plan_budowy_lodzi_podwodnych } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			  has_war_with = USA
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = przez_atlantyk
+		}
+	}
+	
+	###################################
+	####PRZEMYSL CD
+	###################################
+	focus = {
+		id = ZYE_przemysl_rozbudowa_moszczanicy
+		icon = GFX_goal_generic_construction
+		
+		x = -10
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			}
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_srodmiescia
+		icon = GFX_goal_generic_construction
+		
+		x = 6
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 1
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			}
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_male_miasto_duze_problemy
+		icon = GFX_focus_generic_self_management
+		
+		x = 0
+		y = 2
+		relative_position_id = ZYE_przemysl_rozbudowa_srodmiescia
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_srodmiescia } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_political_power = 75
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_rozwoj_nauki
+		icon = GFX_focus_research
+		
+		x = 4
+		y = 1
+		relative_position_id = ZYE_przemysl_male_miasto_duze_problemy
+		prerequisite = { focus = ZYE_przemysl_male_miasto_duze_problemy } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_tech_bonus = {
+					bonus = 1
+					uses = 2
+					category = industry
+				}
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_inwestycje_w_kopernika
+		icon = GFX_goal_generic_scientific_exchange
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozwoj_nauki
+		prerequisite = { focus = ZYE_przemysl_rozwoj_nauki } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_tech_bonus = {
+					bonus = 1.5
+					uses = 1
+					category = nuclear
+				}
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = ZYE_seweryn
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_inwestycje_w_budowlanke
+		icon = GFX_goal_generic_scientific_exchange
+		
+		x = -2
+		y = 1
+		relative_position_id = ZYE_przemysl_rozwoj_nauki
+		prerequisite = { focus = ZYE_przemysl_rozwoj_nauki } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_tech_bonus = {
+					bonus = 1.5
+					uses = 3
+					ahead_reduction = 10
+					category = industry
+				}
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_inwestycje_w_mechanika
+		icon = GFX_goal_generic_scientific_exchange
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_przemysl_rozwoj_nauki
+		prerequisite = { focus = ZYE_przemysl_rozwoj_nauki } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_tech_bonus = {
+					bonus = 1.5
+					uses = 3
+					ahead_reduction = 10
+					category = synth_resources
+				}
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_uniwersytet_zywiecki
+		icon = GFX_goal_tfv_generic_tech_sharing
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_kopernika
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_kopernika focus = ZYE_przemysl_inwestycje_w_mechanika focus = ZYE_przemysl_inwestycje_w_budowlanke} 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_research_slot = 2
+				add_ideas = uniwersytet_zywiecki
+			}
+		}
+	
+	focus = {
+		id = ZYE_przemysl_rozrywka_dla_ludu
+		icon = GFX_focus_smiling_buddha
+		
+		x = -4
+		y = 1
+		relative_position_id = ZYE_przemysl_male_miasto_duze_problemy
+		prerequisite = { focus = ZYE_przemysl_male_miasto_duze_problemy } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_stability = 0.05
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_kino_janosik
+		icon = GFX_goal_ZYE_kino
+		
+		x = 3
+		y = 1
+		relative_position_id = ZYE_przemysl_rozrywka_dla_ludu
+		prerequisite = { focus = ZYE_przemysl_rozrywka_dla_ludu } 
+		
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_war_support = 0.1
+				add_tech_bonus = {
+					bonus = 1
+					uses = 3
+					category = electronics
+				}
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_tkb
+		icon = GFX_goal_generic_national_unity
+		
+		x = -3
+		y = 1
+		relative_position_id = ZYE_przemysl_rozrywka_dla_ludu
+		prerequisite = { focus = ZYE_przemysl_rozrywka_dla_ludu } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_stability = 0.1
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_wsparcie_ts_koszarawy
+		icon = GFX_goal_ZYE_ts_koszarawa
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_przemysl_rozrywka_dla_ludu
+		prerequisite = { focus = ZYE_przemysl_rozrywka_dla_ludu } 
+		mutually_exclusive = {focus = ZYE_przemysl_wsparcie_gorala_zywiec}
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				remove_ideas = historia_dwoch_klubow
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_trening_dla_armii
+		icon = GFX_goal_generic_axis_build_infantry
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_wsparcie_ts_koszarawy
+		prerequisite = { focus = ZYE_przemysl_wsparcie_ts_koszarawy } 
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			army_experience = 50
+				add_doctrine_cost_reduction = {
+					cost_reduction = 0.8
+					uses = 1
+					category = land_doctrine
+				}
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_wsparcie_gorala_zywiec
+		icon = GFX_goal_ZYE_goral_zywiec
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_przemysl_rozrywka_dla_ludu
+		prerequisite = { focus = ZYE_przemysl_rozrywka_dla_ludu } 
+		mutually_exclusive = {focus = ZYE_przemysl_wsparcie_ts_koszarawy}
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				remove_ideas = historia_dwoch_klubow
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_sztama_z_polonia_bytom
+		icon = GFX_focus_generic_diplomatic_treaty
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_wsparcie_gorala_zywiec
+		prerequisite = { focus = ZYE_przemysl_wsparcie_gorala_zywiec } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			762 = {is_core_of = ZYE}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_state_core = 762
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_kibole_gorala
+		icon = GFX_focus_generic_support_the_left_right
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_sztama_z_polonia_bytom
+		prerequisite = { focus = ZYE_przemysl_sztama_z_polonia_bytom } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				division_template = {
+    name = "Kibole Górala"
+    regiments = {
+        infantry = { x = 0 y = 0 }
+        infantry = { x = 0 y = 1 }
+        infantry = { x = 0 y = 2 }
+        infantry = { x = 0 y = 3 }
+        infantry = { x = 1 y = 0 }
+        
+    }
+}
+		970 = {	create_unit = {
+		division = "name = \"Góralska dywizja\" division_template = \"Kibole Górala\"start_experience_factor = 0.6" owner = ZYE
+		count = 10
+		prioritize_location = 13363
+			}
+		}
+			}
+		}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_kocurowa_koleb
+		icon = GFX_goal_generic_construction
+		
+		x = 4
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			mark_focus_tree_layout_dirty = yes
+			add_stability = 0.01
+			}
+		}
+	
+	focus = {
+		
+		id = ZYE_przemysl_sila_lyski
+		icon = GFX_goal_generic_special_forces
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_kocurowa_koleb
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_kocurowa_koleb } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+		allow_branch =  {has_completed_focus = ZYE_przemysl_rozbudowa_kocurowa_koleb}
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_ideas = sila_lyski
+			
+			}
+		}
+	
+	focus = {
+		id = ZYE_przemysl_rozbudowa_sporysza
+		icon = GFX_goal_generic_construction
+		
+		x = -2
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			}
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_srubena_unia
+		icon = GFX_goal_ZYE_srubena
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_sporysza
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_sporysza } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = yes
+				}
+			}
+			
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = srubena_unia
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_zablocia
+		icon = GFX_goal_generic_construction
+		
+		x = 16
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			}
+		}
+	}
+	##########################
+	######LOTNICTWO
+	##########################
+	focus = {
+		id = ZYE_lotnictwo_zablocie_lotnisko
+		icon = GFX_goal_continuous_air_production
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_zablocia
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_zablocia } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+			}
+		}
+	}
+	focus = {
+		id = ZYE_lotnictwo_rozwoj_zywieckiego_lotnictwa
+		icon = GFX_goal_expand_the_luftwaffe
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_lotnictwo_zablocie_lotnisko
+		prerequisite = { focus = ZYE_lotnictwo_zablocie_lotnisko } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			air_experience = 50
+			add_doctrine_cost_reduction = {
+			cost_reduction = 0.8
+			uses = 2
+			category = air_doctrine
+			
+			}
+		}
+	}
+	focus = {
+		id = ZYE_lotnictwo_lotnictwo_to_podstawa
+		icon = GFX_goal_generic_air_bomber
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_lotnictwo_mysliwce
+		prerequisite = { focus = ZYE_lotnictwo_mysliwce focus = ZYE_lotnictwo_samoloty_bliskiego_wsparcia focus = ZYE_lotnictwo_walka_nad_oceanami } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = zywieckie_lotnictwo
+			
+			}
+		
+	}
+	focus = {
+		id = ZYE_lotnictwo_samoloty_bliskiego_wsparcia
+		icon = GFX_goal_generic_CAS
+		
+		x = -2
+		y = 1
+		relative_position_id = ZYE_lotnictwo_rozwoj_zywieckiego_lotnictwa
+		prerequisite = { focus = ZYE_lotnictwo_rozwoj_zywieckiego_lotnictwa } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			add_tech_bonus = {
+					bonus = 1
+					uses = 3
+					ahead_reduction = 3
+					category = cas_bomber
+				}
+			
+			}
+		
+	}
+	focus = {
+		id = ZYE_lotnictwo_mysliwce
+		icon = GFX_goal_generic_air_fighter2
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_lotnictwo_rozwoj_zywieckiego_lotnictwa
+		prerequisite = { focus = ZYE_lotnictwo_rozwoj_zywieckiego_lotnictwa } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			add_tech_bonus = {
+					bonus = 1
+					uses = 3
+					ahead_reduction = 3
+					category = light_fighter
+				}
+			
+			}
+		
+	}
+	focus = {
+		id = ZYE_lotnictwo_walka_nad_oceanami
+		icon = GFX_goal_generic_navy_carrier
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_lotnictwo_rozwoj_zywieckiego_lotnictwa
+		prerequisite = { focus = ZYE_lotnictwo_rozwoj_zywieckiego_lotnictwa } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			add_tech_bonus = {
+					bonus = 1
+					uses = 3
+					ahead_reduction = 3
+					category = naval_air
+				}
+			
+			}
+		
+	}
+	##################################
+	focus = {
+		id = ZYE_przemysl_rozbudowa_podlesia
+		icon = GFX_goal_generic_construction
+		
+		x = 10
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_miasto
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_miasto } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			}
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_werbunek_na_kabatach
+		icon = GFX_focus_generic_little_entente
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_podlesia
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_podlesia } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = 1000
+		}
+	}
+	
+	
+	
+	#####################
+	#######PRZEMYSL - WSIE
+	#######################
+	focus = {
+		id = ZYE_przemysl_inwestycje_w_rejony_wiejskie
+		icon = GFX_goal_generic_production
+		
+		x = 10
+		y = 0
+		#relative_position_id = ZYE_most_zlapanie_winnych
+		#prerequisite = { focus = ZYE_most_zlapanie_winnych } 
+		#prerequisite = { focus = ZYE_most_zatrudnienie_ekspertow_drogowych } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+				add_tech_bonus = {
+					bonus = 1
+					uses = 1
+					category = industry
+				}
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_milowki
+		icon = GFX_goal_generic_construction
+		
+		x = -4
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_rejony_wiejskie
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_rejony_wiejskie } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_dokonczenie_drogi_ekspresowej
+		icon = GFX_goal_generic_construct_infrastructure
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_milowki
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_milowki } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_wegierskiej_gorki
+		icon = GFX_goal_generic_construction
+		
+		x = -2
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_rejony_wiejskie
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_rejony_wiejskie } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	
+	focus = {
+		id = ZYE_przemysl_usbrojenie_fortow
+		icon = GFX_goal_fortify_the_westwall
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_wegierskiej_gorki
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_wegierskiej_gorki } 
+		
+
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = bunker
+					size > 1
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_lesnianki
+		icon = GFX_goal_generic_construction
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_rejony_wiejskie
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_rejony_wiejskie } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 1
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_hutchinson
+		icon = GFX_focus_generic_rubber
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_lesnianki
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_lesnianki } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = hutchinson
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_czernichowa
+		icon = GFX_goal_generic_construction
+		
+		x = 2
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_rejony_wiejskie
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_rejony_wiejskie } 
+		
+
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_piekarnia
+		icon = GFX_goal_generic_consumer_goods
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_czernichowa
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_czernichowa } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = piekarnia_czernichow
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_rozbudowa_jelesni
+		icon = GFX_goal_generic_construction
+		
+		x = 4
+		y = 1
+		relative_position_id = ZYE_przemysl_inwestycje_w_rejony_wiejskie
+		prerequisite = { focus = ZYE_przemysl_inwestycje_w_rejony_wiejskie } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			NOT = {
+			970 = {
+				is_fully_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 1
+					include_locked = yes
+				}
+			}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			970 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			} 
+				
+		}
+	}
+	focus = {
+		id = ZYE_przemysl_jelesnia_strateg
+		icon = GFX_focus_generic_military_mission
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_przemysl_rozbudowa_jelesni
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_jelesni } 
+		
+
+		cost = 3
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = available_military_high_command
+			show_ideas_tooltip = ZYE_pret
+
+		}
+	}
+	
+	##########################
+	####ARMIA
+	##########################
+	
+	focus = {
+		id = ZYE_armia_poczatki
+		icon = GFX_goal_generic_small_arms
+		
+		x = 17
+		y = 0
+	
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {		
+			army_experience = 20
+		}
+	}
+	focus = {
+		id = ZYE_armia_dzialania_antypacyfistyczne
+		icon = GFX_goal_generic_propaganda
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_armia_poczatki
+		prerequisite = { focus = ZYE_armia_poczatki } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {		
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = ZYE_armia_zew_gor
+		icon = GFX_goal_generic_secret_weapon
+		
+		x = -1
+		y = 1
+		relative_position_id = ZYE_armia_dzialania_antypacyfistyczne
+		prerequisite = { focus = ZYE_armia_dzialania_antypacyfistyczne } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {has_completed_focus = ZYE_communist_ostateczne_rozwiazanie_kwestii_goralskiej}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {	
+				division_template = {
+    name = "goral"
+    regiments = {
+        mountaineers = { x = 0 y = 0 }
+        mountaineers = { x = 0 y = 1 }
+        mountaineers = { x = 0 y = 2 }
+        mountaineers = { x = 0 y = 3 }
+        mountaineers = { x = 1 y = 0 }
+        mountaineers = { x = 1 y = 1 }
+        mountaineers = { x = 1 y = 2 }
+        mountaineers = { x = 1 y = 3 }
+        mountaineers = { x = 2 y = 0 }
+        mountaineers = { x = 2 y = 1 }
+        
+    }
+    support = {
+        artillery = { x = 0 y = 0 }
+		field_hospital = { x = 0 y = 1 }
+        maintenance_company = { x = 0 y = 2 }
+    }
+}
+		970 = {	create_unit = {
+		division = "name = \"Góralska dywizja\" division_template = \"goral\"start_experience_factor = 0.6" owner = ZYE
+		count = 7
+		prioritize_location = 13363
+			}
+		}
+		}
+	}
+	focus = {
+		id = ZYE_armia_rozwoj_piechoty_gorskiej
+		icon = GFX_goal_generic_special_forces
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_armia_zew_gor
+		prerequisite = { focus = ZYE_armia_zew_gor } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {	
+				add_ideas = ulepszona_piechota_gorska
+		}
+	}
+	focus = {
+		id = ZYE_armia_rozbudowa_szkoly_moszczanica
+		icon = GFX_goal_generic_allies_build_infantry
+		
+		x = 1
+		y = 1
+		relative_position_id = ZYE_armia_dzialania_antypacyfistyczne
+		prerequisite = { focus = ZYE_armia_dzialania_antypacyfistyczne  } 
+		prerequisite = { focus = ZYE_przemysl_rozbudowa_moszczanicy } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {		
+			add_ideas = szkola_moszczanica
+		}
+	}
+	focus = {
+		id = ZYE_armia_reforma
+		icon = GFX_goal_generic_military_sphere
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_armia_rozbudowa_szkoly_moszczanica
+		prerequisite = { focus = ZYE_armia_rozbudowa_szkoly_moszczanica } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {		
+			swap_ideas = {
+			remove_idea = armia_putoszy1
+			add_idea = armia_putoszy2
+			
+			}
+		}
+	}
+	focus = {
+		id = ZYE_armia_szkola_oficerska
+		icon = GFX_focus_generic_military_mission
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_armia_reforma
+		prerequisite = { focus = ZYE_armia_reforma } 
+		
+
+		cost = 5
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {		
+			add_ideas = nowa_szkola_oficerska
+			if = {
+			limit = {has_government = communism}
+			remove_ideas = armia_putoszy2
+			}
+		}
+	}
+	focus = {
+		id = ZYE_armia_putoszy
+		icon = GFX_focus_generic_military_academy
+		
+		x = 0
+		y = 1
+		relative_position_id = ZYE_armia_szkola_oficerska
+		prerequisite = { focus = ZYE_armia_szkola_oficerska } 
+		
+
+		cost = 20
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			NOT = {has_government  = communism}
+		}
+
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {		
+			swap_ideas = {
+			remove_idea = armia_putoszy2
+			add_idea = armia_putoszy3
+			
+			}
+		}
+	}
+	
+	
+	
+		
+}
+
+
+
+
+		
