@@ -1,0 +1,28 @@
+add_namespace = mpa
+
+# The great flee
+country_event = {
+	id = mpa.1
+	title = mpa.1.t
+	desc = mpa.1.d
+	picture = GFX_mpa_event_1
+	
+	is_triggered_only = no
+	trigger = {
+		tag = MPA
+		surrender_progress > 0.8
+	}
+	
+	option = {
+		name = mpa.1.a
+		BRG = { change_tag_from = MPA }
+		761 = {transfer_state_to = BRG}
+		MON = {
+			annex_country = {
+			target = MPA
+			transfer_troops = no
+			}
+		}
+		
+	}
+}

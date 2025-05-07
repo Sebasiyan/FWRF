@@ -1,0 +1,10 @@
+spriteTypes = {
+	
+	spriteType = {
+		name = "GFX_mpa_event_1"
+		texturefile = "gfx/event_pictures/mpa_event.dds"
+	}
+	
+	
+	
+}
