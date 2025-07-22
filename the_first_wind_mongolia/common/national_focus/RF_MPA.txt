@@ -1,5 +1,6 @@
 focus_tree = {
 	id = MPA_focus
+
 	country = {
 		factor = 0
 		modifier = {
@@ -8,19 +9,133 @@ focus_tree = {
 		}
 	}
 
-	continuous_focus_position = { x = 100 y = 2000 }
+	default = no
+	continuous_focus_position = { x = 50 y = 4000 }
 
 	focus = {
-		id = MPA_focus1
-		icon = GFX_focus_MPA_focus1
-		x = 14
+		id = MPA_revolution_in_the_steppe
+		icon = GFX_goal_MPA_decision_time
+		x = 10
 		y = 0
-		cost = 4
-		available_if_capitulated = yes
-		ai_will_do = {
-			factor = 30
+		cost = 5
+
+		available = {
+			is_subject = no
 		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
 		completion_reward = {
-			add_political_power = 100
+			mark_focus_tree_layout_dirty = yes
+			add_political_power = 30
 		}
 	}
+} 
+
+focus = {
+	id = MPA_grab_weapons
+	icon = GFX_goal_generic_production2
+	x = 9
+	y = 1
+	cost = 5
+	prerequisite = { focus = MPA_revolution_in_the_steppe }
+
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+		}
+	}
+}
+
+focus = {
+	id = MPA_form_battalions
+	icon = GFX_goal_generic_allies_build_infantry
+	x = 10
+	y = 1
+	cost = 5
+	prerequisite = { focus = MPA_revolution_in_the_steppe }
+
+	completion_reward = {
+		add_division_template = "People's Regiment"
+		add_division = {
+			division_name = "People's Regiment"
+			division_template = "People's Regiment"
+			start_experience_factor = 0.3
+		}
+		add_division = {
+			division_name = "People's Regiment"
+			division_template = "People's Regiment"
+			start_experience_factor = 0.3
+		}
+	}
+}
+focus = {
+	id = MPA_march_on
+	icon = GFX_goal_generic_war
+	x = 10
+	y = 2
+	cost = 5
+	prerequisite = { focus = MPA_form_battalions }
+
+	completion_reward = {
+		add_named_threat = {
+			threat = 5
+			name = "MPA_march_on_threat"
+		}
+		create_wargoal = {
+			type = annex
+			target = MON
+		}
+	}
+}
+###ALTAI_GOOD
+
+focus = {
+	id = MPA_mongol_altaic_friendship
+	icon = GFX_goal_generic_political_pressure
+	x = 9
+	y = 3
+	cost = 5
+	prerequisite = { focus = MPA_march_on }
+	mutually_exclusive = { focus = MPA_self_reliance }
+
+	available = {
+		ALT = {
+			has_completed_focus = alt_gurkin_prevails
+		}
+	}
+
+	completion_reward = {
+		add_opinion_modifier = {
+			target = ALT
+			modifier = mpa_mongol_altaic_friendship
+		}
+	}
+}x
+####ALTAI_BAD
+
+focus = {
+	id = MPA_self_reliance
+	icon = GFX_goal_generic_political_pressure
+	x = 9
+	y = 3
+	cost = 5
+	prerequisite = { focus = MPA_march_on }
+	mutually_exclusive = { focus = MPA_mongol_altaic_friendship }
+
+	available = {
+		ALT = {
+			has_completed_focus = alt_otb_putsch
+		}
+	}
+
+	completion_reward = {
+		add_opinion_modifier = {
+			target = ALT
+			modifier = mpa_mongol_altaic_friendship
+		}
+	}
+}
