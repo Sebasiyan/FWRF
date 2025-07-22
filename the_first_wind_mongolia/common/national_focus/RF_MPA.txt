@@ -32,14 +32,15 @@ focus_tree = {
 			add_political_power = 30
 		}
 	}
-} 
+
 
 focus = {
 	id = MPA_grab_weapons
 	icon = GFX_goal_generic_production2
-	x = 9
+	x = 0
 	y = 1
 	cost = 5
+	relative_position_id = MPA_revolution_in_the_steppe
 	prerequisite = { focus = MPA_revolution_in_the_steppe }
 
 	completion_reward = {
@@ -53,31 +54,39 @@ focus = {
 focus = {
 	id = MPA_form_battalions
 	icon = GFX_goal_generic_allies_build_infantry
-	x = 10
+	x = 0
 	y = 1
 	cost = 5
-	prerequisite = { focus = MPA_revolution_in_the_steppe }
+	relative_position_id = MPA_grab_weapons
+	prerequisite = { focus = MPA_grab_weapons }
 
 	completion_reward = {
-		add_division_template = "People's Regiment"
-		add_division = {
-			division_name = "People's Regiment"
-			division_template = "People's Regiment"
-			start_experience_factor = 0.3
+		division_template = {
+    name = "Mongol tariachin tsereg"
+    regiments = {
+        infantry = { x = 0 y = 0 }
+        infantry = { x = 0 y = 1 }
+        infantry = { x = 0 y = 2 }
+        infantry = { x = 0 y = 3 }
+        infantry = { x = 1 y = 0 }
+        
 		}
-		add_division = {
-			division_name = "People's Regiment"
-			division_template = "People's Regiment"
-			start_experience_factor = 0.3
+	}
+		1149 = {	create_unit = {
+		division = "name = \"Mongol tariachin tsereg\" division_template = \"Mongol tariachin tsereg\"start_experience_factor = 0.6" owner = MPA
+		count = 5
+		prioritize_location = 13363
+			}
 		}
 	}
 }
 focus = {
 	id = MPA_march_on
 	icon = GFX_goal_generic_war
-	x = 10
-	y = 2
+	x = 0
+	y = 1
 	cost = 5
+	relative_position_id = MPA_form_battalions
 	prerequisite = { focus = MPA_form_battalions }
 
 	completion_reward = {
@@ -96,15 +105,16 @@ focus = {
 focus = {
 	id = MPA_mongol_altaic_friendship
 	icon = GFX_goal_generic_political_pressure
-	x = 9
-	y = 3
+	x = -2
+	y = 1
 	cost = 5
+	relative_position_id = MPA_march_on
 	prerequisite = { focus = MPA_march_on }
 	mutually_exclusive = { focus = MPA_self_reliance }
 
 	available = {
 		ALT = {
-			has_completed_focus = alt_gurkin_prevails
+			has_completed_focus = ALT_gurkhin_prevails
 		}
 	}
 
@@ -114,21 +124,22 @@ focus = {
 			modifier = mpa_mongol_altaic_friendship
 		}
 	}
-}x
+}
 ####ALTAI_BAD
 
 focus = {
 	id = MPA_self_reliance
 	icon = GFX_goal_generic_political_pressure
-	x = 9
-	y = 3
+	x = 2
+	y = 1
 	cost = 5
+	relative_position_id = MPA_march_on
 	prerequisite = { focus = MPA_march_on }
 	mutually_exclusive = { focus = MPA_mongol_altaic_friendship }
 
 	available = {
 		ALT = {
-			has_completed_focus = alt_otb_putsch
+			has_completed_focus = ALT_OTB_putsch
 		}
 	}
 
@@ -138,4 +149,5 @@ focus = {
 			modifier = mpa_mongol_altaic_friendship
 		}
 	}
+}
 }
